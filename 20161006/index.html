@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta lang="" property="dc:language" content="en">
+  <style>
+    /*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+    
+    .hljs {
+      display: block;
+      overflow-x: auto;
+      padding: 0.5em;
+      color: #333;
+      background: #f8f8f8;
+    }
+    
+    .hljs-comment,
+    .hljs-quote {
+      color: #998;
+      font-style: italic;
+    }
+    
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-subst {
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .hljs-number,
+    .hljs-literal,
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-tag .hljs-attr {
+      color: #008080;
+    }
+    
+    .hljs-string,
+    .hljs-doctag {
+      color: #d14;
+    }
+    
+    .hljs-title,
+    .hljs-section,
+    .hljs-selector-id {
+      color: #900;
+      font-weight: bold;
+    }
+    
+    .hljs-subst {
+      font-weight: normal;
+    }
+    
+    .hljs-type,
+    .hljs-class .hljs-title {
+      color: #458;
+      font-weight: bold;
+    }
+    
+    .hljs-tag,
+    .hljs-name,
+    .hljs-attribute {
+      color: #000080;
+      font-weight: normal;
+    }
+    
+    .hljs-regexp,
+    .hljs-link {
+      color: #009926;
+    }
+    
+    .hljs-symbol,
+    .hljs-bullet {
+      color: #990073;
+    }
+    
+    .hljs-built_in,
+    .hljs-builtin-name {
+      color: #0086b3;
+    }
+    
+    .hljs-meta {
+      color: #999;
+      font-weight: bold;
+    }
+    
+    .hljs-deletion {
+      background: #fdd;
+    }
+    
+    .hljs-addition {
+      background: #dfd;
+    }
+    
+    .hljs-emphasis {
+      font-style: italic;
+    }
+    
+    .hljs-strong {
+      font-weight: bold;
+    }
+  </style>
+  <style>
+    /* --- EXAMPLES --- */
+    
+    div.example-title {
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.example-title span {
+      text-transform: uppercase;
+    }
+    
+    aside.example,
+    div.example,
+    div.illegal-example {
+      padding: 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    div.illegal-example {
+      color: red
+    }
+    
+    div.illegal-example p {
+      color: black
+    }
+    
+    aside.example,
+    div.example {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+      border-color: #e0cb52;
+      background: #fcfaee;
+    }
+    
+    aside.example div.example {
+      border-left-width: .1em;
+      border-color: #999;
+      background: #fff;
+    }
+    
+    aside.example div.example div.example-title {
+      color: #999;
+    }
+  </style>
+  <style>
+    /* --- ISSUES/NOTES --- */
+    
+    div.issue-title,
+    div.note-title,
+    div.ednote-title,
+    div.warning-title {
+      padding-right: 1em;
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.issue-title {
+      color: #e05252;
+    }
+    
+    div.note-title,
+    div.ednote-title {
+      color: #2b2;
+    }
+    
+    div.warning-title {
+      color: #f22;
+    }
+    
+    div.issue-title span,
+    div.note-title span,
+    div.ednote-title span,
+    div.warning-title span {
+      text-transform: uppercase;
+    }
+    
+    div.note,
+    div.issue,
+    div.ednote,
+    div.warning {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    
+    .note>p:first-child,
+    .ednote>p:first-child,
+    .issue>p:first-child,
+    .warning>p:first-child {
+      margin-top: 0
+    }
+    
+    .issue,
+    .note,
+    .ednote,
+    .warning {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+    }
+    
+    div.issue,
+    div.note,
+    div.ednote,
+    div.warning {
+      padding: 1em 1.2em 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    span.note,
+    span.ednote,
+    span.issue,
+    span.warning {
+      padding: .1em .5em .15em;
+    }
+    
+    .issue {
+      border-color: #e05252;
+      background: #fbe9e9;
+    }
+    
+    .note,
+    .ednote {
+      border-color: #52e052;
+      background: #e9fbe9;
+    }
+    
+    .warning {
+      border-color: #f11;
+      border-width: .2em;
+      border-style: solid;
+      background: #fbe9e9;
+    }
+    
+    .warning-title:before {
+      content: "⚠";
+      /*U+26A0 WARNING SIGN*/
+      font-size: 3em;
+      float: left;
+      height: 100%;
+      padding-right: .3em;
+      vertical-align: top;
+      margin-top: -0.5em;
+    }
+    
+    li.task-list-item {
+      list-style: none;
+    }
+    
+    input.task-list-item-checkbox {
+      margin: 0 0.35em 0.25em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style id="respec-mainstyle">
+    /*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+    /* Override code highlighter background */
+    
+    .hljs {
+      background: transparent !important;
+    }
+    /* --- INLINES --- */
+    
+    em.rfc2119 {
+      text-transform: lowercase;
+      font-variant: small-caps;
+      font-style: normal;
+      color: #900;
+    }
+    
+    h1 acronym,
+    h2 acronym,
+    h3 acronym,
+    h4 acronym,
+    h5 acronym,
+    h6 acronym,
+    a acronym,
+    h1 abbr,
+    h2 abbr,
+    h3 abbr,
+    h4 abbr,
+    h5 abbr,
+    h6 abbr,
+    a abbr {
+      border: none;
+    }
+    
+    dfn {
+      font-weight: bold;
+    }
+    
+    a.internalDFN {
+      color: inherit;
+      border-bottom: 1px solid #99c;
+      text-decoration: none;
+    }
+    
+    a.externalDFN {
+      color: inherit;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none;
+    }
+    
+    a.bibref {
+      text-decoration: none;
+    }
+    
+    cite .bibref {
+      font-style: normal;
+    }
+    
+    code {
+      color: #C83500;
+    }
+    
+    th code {
+      color: inherit;
+    }
+    /* --- TOC --- */
+    
+    .toc a,
+    .tof a {
+      text-decoration: none;
+    }
+    
+    a .secno,
+    a .figno {
+      color: #000;
+    }
+    
+    ul.tof,
+    ol.tof {
+      list-style: none outside none;
+    }
+    
+    .caption {
+      margin-top: 0.5em;
+      font-style: italic;
+    }
+    /* --- TABLE --- */
+    
+    table.simple {
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-bottom: 3px solid #005a9c;
+    }
+    
+    .simple th {
+      background: #005a9c;
+      color: #fff;
+      padding: 3px 5px;
+      text-align: left;
+    }
+    
+    .simple th[scope="row"] {
+      background: inherit;
+      color: inherit;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple td {
+      padding: 3px 10px;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple tr:nth-child(even) {
+      background: #f0f6ff;
+    }
+    /* --- DL --- */
+    
+    .section dd>p:first-child {
+      margin-top: 0;
+    }
+    
+    .section dd>p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section dd {
+      margin-bottom: 1em;
+    }
+    
+    .section dl.attrs dd,
+    .section dl.eldef dd {
+      margin-bottom: 0;
+    }
+    
+    .respec-hidden {
+      display: none;
+    }
+    
+    @media print {
+      .removeOnSave {
+        display: none;
+      }
+    }
+  </style>
+  <title>The Function Ontology</title>
+
+  <link rel="stylesheet" type="text/css" href="../../resources/css/extras.css">
+  <script async="" src="//www.google-analytics.com/analytics.js"></script>
+  <style type="text/css">
+    code {
+      font-size: 120%;
+    }
+  </style>
+
+  <script>
+    (function(i, s, o, g, r, a, m)
+    {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function()
+      {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-49827938-4', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD">
+  <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+  <meta name="generator" content="ReSpec 5.0.4">
+  <script id="initialUserConfig" type="application/json">
+    {
+      "localBiblio":
+      {},
+      "doRdfa": "true",
+      "processVersion": 2015,
+      "specStatus": "unofficial",
+      "shortName": "function",
+      "copyrightStart": "2016",
+      "edDraftURI": "http://users.ugent.be/~bjdmeest/function/",
+      "editors": [
+      {
+        "name": "Ben De Meester",
+        "mailto": "ben.demeester@ugent.be",
+        "company": "Ghent University - iMinds - Data Science Lab",
+        "url": "http://users.ugent.be/~bjdmeest/",
+        "extras": [
+        {
+          "name": "<img src='../../resources/images/orcid_logo.png' />",
+          "href": "http://orcid.org/0000-0003-0248-0987",
+          "class": "orcid"
+        }],
+        "companyURL": "http://www.iminds.be/"
+      },
+      {
+        "name": "Anastasia Dimou",
+        "mailto": "anastasia.dimou@ugent.be",
+        "company": "Ghent University - iMinds - Data Science Lab",
+        "extras": [
+        {
+          "name": "<img src='../../resources/images/orcid_logo.png' />",
+          "href": "http://orcid.org/0000-0003-2138-7972",
+          "class": "orcid"
+        }],
+        "companyURL": "http://www.iminds.be/"
+      }],
+      "otherLinks": [
+      {
+        "key": "This Version",
+        "data": [
+        {
+          "value": "http://users.ugent.be/~bjdmeest/function/20161006/",
+          "href": "http://users.ugent.be/~bjdmeest/function/20161006/"
+        }]
+      },
+      {
+        "key": "Previous Version",
+        "data": [
+        {
+          "value": "http://users.ugent.be/~bjdmeest/function/20160822/",
+          "href": "http://users.ugent.be/~bjdmeest/function/20160822/"
+        }]
+      }]
+    }
+  </script>
+</head>
+<body class="h-entry" role="document" id="respecDocument">
+  <div class="head" role="contentinfo" id="respecHeader">
+    <p>
+    </p>
+    <h1 class="title p-name" id="title" property="dcterms:title">The Function Ontology</h1>
+    <h2 id="unofficial-draft-06-october-2016">Unofficial Draft <time property="dcterms:issued" class="dt-published" datetime="2016-10-06">06 October 2016</time></h2>
+    <dl>
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="http://users.ugent.be/~bjdmeest/function/">http://users.ugent.be/~bjdmeest/function/</a></dd>
+      <dt>Editors:</dt>
+      <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><meta property="foaf:name" content="Ben De Meester"><a class="u-url url p-name fn" property="foaf:homepage" href="http://users.ugent.be/~bjdmeest/">Ben De Meester</a>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.iminds.be/">Ghent University - iMinds - Data Science Lab</a>, <span class="ed_mailto"><a class="u-email email" property="foaf:mbox" href="mailto:ben.demeester@ugent.be">ben.demeester@ugent.be</a></span>, <span class="orcid"><a href="http://orcid.org/0000-0003-0248-0987" property="rdfs:seeAlso"><img src="../../resources/images/orcid_logo.png"></a></span></span>
+        <span property="rdf:rest" resource="_:editor1"></span>
+      </dd>
+      <dd class="p-author h-card vcard" resource="_:editor1"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Anastasia Dimou</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.iminds.be/">Ghent University - iMinds - Data Science Lab</a>, <span class="ed_mailto"><a class="u-email email" property="foaf:mbox" href="mailto:anastasia.dimou@ugent.be">anastasia.dimou@ugent.be</a></span>, <span class="orcid"><a href="http://orcid.org/0000-0003-2138-7972" property="rdfs:seeAlso"><img src="../../resources/images/orcid_logo.png"></a></span></span>
+        <span property="rdf:rest" resource="rdf:nil"></span>
+      </dd>
+
+      <dt>This Version:</dt>
+      <dd>
+        <a href="http://users.ugent.be/~bjdmeest/function/20161006/">
+                      http://users.ugent.be/~bjdmeest/function/20161006/
+                    </a>
+      </dd>
+      <dt>Previous Version:</dt>
+      <dd>
+        <a href="http://users.ugent.be/~bjdmeest/function/20160822/">
+                      http://users.ugent.be/~bjdmeest/function/20160822/
+                    </a>
+      </dd>
+    </dl>
+    <p class="copyright">
+      This document is licensed under a
+      <a class="subfoot" href="https://creativecommons.org/licenses/by/3.0/" rel="license">Creative Commons
+          Attribution 3.0 License</a>.
+    </p>
+    <hr title="Separator for header">
+  </div>
+
+  <section id="abstract" class="introductory" property="dc:abstract">
+    <h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+    <p>
+      This document discusses the Function Ontology, a way to semantically declare and describe function. It uses SKOS to define relations between functions, problems, and algorithms.
+    </p>
+
+    <p>
+      A list of the publications concerning the Function Ontology can be viewed at <a href="http://users.ugent.be/~bjdmeest/#function">http://users.ugent.be/~bjdmeest/#function</a>
+    </p>
+
+    <p>
+      There exist many specifications that define Web services, both non-semantically (e.g., <a href="https://www.w3.org/TR/wsdl20/">WSDL</a> and <a href="https://www.w3.org/Submission/wadl/">WADL</a>) and semantically (e.g., <a href="https://www.w3.org/Submission/OWL-S/">OWL-S</a> and <a href="http://hydra-cg.com/spec/latest/core/">Hydra</a>) These specifications target different facets (e.g., HTTP-based vs SOAP-based access, defining RESTful APIs, etc.), but have in common that they <em>define Web services</em>. Thus, they clearly specify, e.g., which HTTP method to invoke with which parameter to correctly call the Web service. The big drawback of these specifications is thus that they are very coupled with the technology stack. However, not all actions can be executed using Web APIs, either because of performance or practicality reasons. For example, the nurse call system is a near real-time system, which implies that unnecessary HTTP connections should be avoided.
+    </p>
+
+    <p>
+      In this specification, we present a more general vocabulary as a data model, specification, and ontology to semantically declare and describe functions. Instead of <em>defining</em> technology-specifics, the functions are <em>described</em> independent of the technology that implements them. By semantically defining these functions using an ontology, we provide a uniform and unambiguous solution, and thus, we can close the gap between semantic data and any real-world action, and enable semantic applications to be used in real-world scenarios.
+    </p>
+
+    <section typeof="bibo:Chapter" resource="#namespace" property="bibo:hasPart">
+      <h3 id="namespace" resource="#namespace"><span property="xhv:role" resource="xhv:heading">Namespace</span></h3>
+
+      <p>The Function Ontology's namespace is <a href="http://w3id.org/function/ontology">http://w3id.org/function/ontology</a></p>
+
+      <p>The preferred prefix is <code>fno:</code></p>
+    </section>
+  </section>
+
+  <section id="sotd" class="introductory">
+    <h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+    <p>
+      This document is merely a public working draft of a potential specification. It has no official standing of any kind and does not represent the support or consensus of any standards organisation.
+    </p>
+
+    <p>
+      This is an early draft, expect this document to change much and often.
+    </p>
+
+  </section>
+  <nav id="toc">
+    <h2 class="introductory" id="table-of-contents" resource="#table-of-contents"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2>
+    <ol class="toc" role="directory">
+      <li class="tocline"><a href="#problem" class="tocxref"><span class="secno">1. </span>The Problem</a></li>
+      <li class="tocline"><a href="#definitions" class="tocxref"><span class="secno">2. </span>Definitions</a></li>
+      <li class="tocline"><a href="#ontology" class="tocxref"><span class="secno">3. </span>The Function Ontology</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#fn-function" class="tocxref"><span class="secno">3.1 </span><code>fno:Function</code></a></li>
+          <li class="tocline"><a href="#fn-problem" class="tocxref"><span class="secno">3.2 </span><code>fno:Problem</code></a>
+            <ol class="toc">
+              <li class="tocline"><a href="#fn-solves" class="tocxref"><span class="secno">3.2.1 </span><code>fno:solves</code></a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#fn-algorithm" class="tocxref"><span class="secno">3.3 </span><code>fno:Algorithm</code></a>
+            <ol class="toc">
+              <li class="tocline"><a href="#fn-implements" class="tocxref"><span class="secno">3.3.1 </span><code>fno:implements</code></a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#fn-parameter" class="tocxref"><span class="secno">3.4 </span><code>fno:Parameter</code></a>
+            <ol class="toc">
+              <li class="tocline"><a href="#fn-expects" class="tocxref"><span class="secno">3.4.1 </span><code>fno:expects</code></a></li>
+              <li class="tocline"><a href="#fn-predicate" class="tocxref"><span class="secno">3.4.2 </span><code>fno:predicate</code></a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#fn-execution" class="tocxref"><span class="secno">3.5 </span><code>fno:Execution</code></a>
+            <ol class="toc">
+              <li class="tocline"><a href="#fn-executes" class="tocxref"><span class="secno">3.5.1 </span><code>fno:executes</code></a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#fn-output" class="tocxref"><span class="secno">3.6 </span><code>fno:Output</code></a>
+            <ol class="toc">
+              <li class="tocline"><a href="#fn-returns" class="tocxref"><span class="secno">3.6.1 </span><code>fno:returns</code></a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#complete-example" class="tocxref"><span class="secno">3.7 </span>Complete example</a></li>
+        </ol>
+      </li>
+      <li class="tocline"><a href="#hydra-comparison" class="tocxref"><span class="secno">4. </span>Abstraction of the <span class="formerLink">Hydra specification</span></a></li>
+      <li class="tocline"><a href="#examples" class="tocxref"><span class="secno">5. </span>Examples</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#array-of-parameters" class="tocxref"><span class="secno">5.1 </span>Array of parameters</a></li>
+          <li class="tocline"><a href="#required-output" class="tocxref"><span class="secno">5.2 </span>Required output</a></li>
+          <li class="tocline"><a href="#reification-explained" class="tocxref"><span class="secno">5.3 </span>Reification explained</a></li>
+          <li class="tocline"><a href="#reference-model" class="tocxref"><span class="secno">5.4 </span>Reference model</a></li>
+          <li class="tocline"><a href="#system-architecture-example" class="tocxref"><span class="secno">5.5 </span>System architecture example</a></li>
+        </ol>
+      </li>
+    </ol>
+  </nav>
+
+
+
+  <section id="problem" typeof="bibo:Chapter" resource="#problem" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-problem" resource="#h-problem"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>The Problem</span>
+    </h2>
+
+    <p>
+      Applications built on top of Linked Data and the Semantic Web are emerging as a novel solution in many different areas, such as -- among others -- decision making and route planning. However, to connect results of these solutions (i.e., the semantic data) with real-world applications, we need a generic way to connect actionable events to semantic data.
+    </p>
+    <p>
+      This specification (and accompanying <a href="http://semweb.mmlab.be/ns/function">ontology</a>) explains how to semantically declare and describe functions, their input parameters, and possible outputs.
+    </p>
+
+  </section>
+
+  <section id="definitions" typeof="bibo:Chapter" resource="#definitions" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-definitions" resource="#h-definitions"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Definitions</span>
+    </h2>
+
+    <p>The following document makes a clear distinction between following concepts:</p>
+
+    <ul>
+      <li>
+        A <dfn data-dfn-type="dfn" id="dfn-function-declaration">function declaration</dfn> is stating that a function exists, without further ado. For example, <code>function sum;</code> is a <a href="#dfn-function-declaration" class="internalDFN" data-link-type="dfn">function declaration</a>.
+      </li>
+      <li>
+        A <dfn data-dfn-type="dfn" id="dfn-function-description">function description</dfn> describes the function, i.e., talks about the inputs and outputs of the function. For example, the function above could have the following description: <code>function int sum(int a, int b)</code>, namely, the function <code>sum</code> has two input parameters, <code>int a</code> and <code>int b</code>, and returns an integer.
+      </li>
+      <li>
+        A <dfn data-dfn-type="dfn" id="dfn-function-definition">function definition</dfn> defines the internal workings of a function. As this can be very dependent on the used programming language and/or execution environment, this is not taken into account by the Function Ontology.
+      </li>
+      <li>
+        An <dfn data-dfn-type="dfn" id="dfn-assignment">assignment</dfn> fills in the values of the parameters of a functions. For example, a possible assignment for the exemplary function could be <code>sum(2, 4)</code>, namely, assigning the values <code>2</code> to <code>a</code> and <code>4</code> to <code>b</code>.
+      </li>
+    </ul>
+
+    <p>Furthermore, we define following concepts:</p>
+
+    <ul>
+      <li>A <dfn data-dfn-type="dfn" id="dfn-function">function</dfn> is an actionable thing that can have input parameters, output, solve certain problems, and implement certain algorithms.</li>
+      <li>
+        A <dfn data-dfn-type="dfn" id="dfn-problem">problem</dfn> is problem that can be solved by executing a certain function. For example, the above function solves the <code>doing a sum</code> problem.
+      </li>
+      <li>
+        An <dfn data-dfn-type="dfn" id="dfn-algorithm">algorithm</dfn> is a specified set of instructions, independent of its implementation (e.g., Dijkstra's shortest path algorithm). A function can implement one single algorithm, or use a combination of multiple algorithms to solve a certain problem. A function does not have to implement any algorithm or have to be mapped one-on-one to an algorithm.
+      </li>
+      <li>
+        A <dfn data-dfn-type="dfn" id="dfn-parameter">parameter</dfn> is the description of the input value of a function. For example, the above function has two parameters, <code>a</code> and <code>b</code>.
+      </li>
+      <li>
+        An <dfn data-dfn-type="dfn" id="dfn-output">output</dfn> is the description of the output value of a function. For example, the above function has one output, an integer. A function can have multiple outputs (e.g., callbacks in JavaScript can return multiple results, or a function could throw multiple types of errors).
+      </li>
+      <li>
+        An <dfn data-dfn-type="dfn" id="dfn-execution">execution</dfn> is the assignment of the values of the parameters of a function. An <a href="#dfn-execution" class="internalDFN" data-link-type="dfn">execution</a> has as result the value of the <a href="#dfn-output" class="internalDFN" data-link-type="dfn">output</a> of the function. For example, <code>sum(2, 4)</code> is an execution of the example function. The value of the output is known after the function is executed, and should in this case be the integer <code>6</code>.
+      </li>
+    </ul>
+  </section>
+
+  <section id="ontology" typeof="bibo:Chapter" resource="#ontology" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-ontology" resource="#h-ontology"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>The Function Ontology</span>
+    </h2>
+
+    <figure id="fig-the-function-ontology">
+      <img src="../../resources/images/function_ontology_2.png" alt="The Function Ontology">
+      <figcaption>Fig. <span class="figno">1</span> <span class="fig-title">The Function Ontology</span></figcaption>
+    </figure>
+
+    <p>
+      The Function Ontology follows the <a href="http://ontologydesignpatterns.org/wiki/Category:ContentOP">Content Ontology Design Pattern</a> and consists of a couple of base classes that need to be instantiated for real world use cases. Input parameters and output values are connected to functions via executions, using a reification paradigm.
+    </p>
+
+    <p>
+      To remain consistent with the paradigms used in SKOS, axioms need to be made instead of subclassing the base classes of the Function Ontology. The reification paradigm allows to define the connection between an execution and the input parameters and output values. This allows for re-use of these connection definitions, and more meaningful connections between input parameter and execution.
+    </p>
+
+    <p>
+      No cardinalities are defined in the Function Ontology, as there are no hard limits on cardinality to be defined. A function can implement multiple algorithms, solve multiple problems, and have multiple executions. All executions can have multiple input parameters and output values. Vice versa, input parameters and output values can be linked to multiple executions, and an execution (i.e., a set of input values and output values) can be linked to multiple functions.
+    </p>
+
+    <section typeof="bibo:Chapter" resource="#fn-function" property="bibo:hasPart">
+      <h3 id="fn-function" resource="#fn-function"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1 </span><code>fno:Function</code></span>
+      </h3>
+
+      <div class="example">
+        <div class="example-title marker"><span>Example 1</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumFunction</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Function</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:name</span> "<span class="hljs-selector-tag">The</span> <span class="hljs-selector-tag">sum</span> <span class="hljs-selector-tag">function</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    <span class="hljs-selector-tag">dcterms</span><span class="hljs-selector-pseudo">:description</span> "<span class="hljs-selector-tag">This</span> <span class="hljs-selector-tag">function</span> <span class="hljs-selector-tag">can</span> <span class="hljs-selector-tag">do</span> <span class="hljs-selector-tag">the</span> <span class="hljs-selector-tag">sum</span> <span class="hljs-selector-tag">of</span> <span class="hljs-selector-tag">two</span> <span class="hljs-selector-tag">integers</span>."^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;</pre></div>
+    </section>
+
+    <section typeof="bibo:Chapter" resource="#fn-problem" property="bibo:hasPart">
+      <h3 id="fn-problem" resource="#fn-problem"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2 </span><code>fno:Problem</code></span>
+      </h3>
+      <div class="example">
+        <div class="example-title marker"><span>Example 2</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumFunction</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Function</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:solves</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumProblem.</span>
+
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumProblem</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Problem</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:name</span> "<span class="hljs-selector-tag">The</span> <span class="hljs-selector-tag">sum</span> <span class="hljs-selector-tag">problem</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    <span class="hljs-selector-tag">dcterms</span><span class="hljs-selector-pseudo">:description</span> "<span class="hljs-selector-tag">This</span> <span class="hljs-selector-tag">handles</span> <span class="hljs-selector-tag">the</span> <span class="hljs-selector-tag">problem</span> <span class="hljs-selector-tag">of</span> <span class="hljs-selector-tag">adding</span> <span class="hljs-selector-tag">two</span> <span class="hljs-selector-tag">integers</span> <span class="hljs-selector-tag">to</span> <span class="hljs-selector-tag">each</span> <span class="hljs-selector-tag">other</span>."^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    <span class="hljs-selector-tag">skos</span><span class="hljs-selector-pseudo">:broader</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:mathProblem.</span></pre></div>
+
+      <div class="note">
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note1"><span>Note</span></div>
+        <div class="">
+          <p>
+            <code>skos</code> terms can be used to relate problems with each other. This can also be done for algorithms and functions.
+          </p>
+        </div>
+      </div>
+
+      <section typeof="bibo:Chapter" resource="#fn-solves" property="bibo:hasPart">
+        <h4 id="fn-solves" resource="#fn-solves"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.1 </span><code>fno:solves</code></span>
+        </h4>
+
+        <p><strong>Domain</strong> <a href="#fn-function">fno:Function</a></p>
+
+        <p><strong>Range</strong> <a href="#fn-problem">fno:Problem</a></p>
+
+      </section>
+    </section>
+
+    <section typeof="bibo:Chapter" resource="#fn-algorithm" property="bibo:hasPart">
+      <h3 id="fn-algorithm" resource="#fn-algorithm"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3 </span><code>fno:Algorithm</code></span>
+      </h3>
+      <div class="example">
+        <div class="example-title marker"><span>Example 3</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumFunction</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Function</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:implements</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumAlgorithm.</span>
+
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumAlgorithm</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Algorithm</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:name</span> "<span class="hljs-selector-tag">The</span> <span class="hljs-selector-tag">sum</span> <span class="hljs-selector-tag">algorithm</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    <span class="hljs-selector-tag">dcterms</span><span class="hljs-selector-pseudo">:description</span> "<span class="hljs-selector-tag">About</span> <span class="hljs-selector-tag">how</span> <span class="hljs-selector-tag">to</span> <span class="hljs-selector-tag">add</span> <span class="hljs-selector-tag">two</span> <span class="hljs-selector-tag">integers</span> <span class="hljs-selector-tag">to</span> <span class="hljs-selector-tag">each</span> <span class="hljs-selector-tag">other</span>."^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;</pre></div>
+
+      <section typeof="bibo:Chapter" resource="#fn-implements" property="bibo:hasPart">
+        <h4 id="fn-implements" resource="#fn-implements"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.1 </span><code>fno:implements</code></span>
+        </h4>
+
+        <p><strong>Domain</strong> <a href="#fn-function">fno:Function</a></p>
+
+        <p><strong>Range</strong> <a href="#fn-algorithm">fno:Algorithm</a></p>
+
+      </section>
+    </section>
+
+    <section typeof="bibo:Chapter" resource="#fn-parameter" property="bibo:hasPart">
+      <h3 id="fn-parameter" resource="#fn-parameter"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4 </span><code>fno:Parameter</code></span>
+      </h3>
+      <div class="example">
+        <div class="example-title marker"><span>Example 4</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumFunction</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Function</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:expects</span> ( <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:intParameterA</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:intParameterB</span> ).
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:intParameterA</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Parameter</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:predicate</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:startValue</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:required</span> "<span class="hljs-selector-tag">true</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:boolean.</span>
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:startValue</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:type</span> <span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span>
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:intParameterB</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Parameter</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:predicate</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumValue</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:required</span> "<span class="hljs-selector-tag">true</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:boolean.</span>  
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumValue</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:type</span> <span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span></pre></div>
+
+      <p>
+        This description actually defines which predicates to use when binding the values to the execution of the function (using the <code>fno:predicate</code> predicate). All predicates are allowed, except for <code>rdf:type</code> and <code>fno:executes</code>.
+      </p>
+
+      <p>
+        In the example <code>ex:intParameterA</code> and <code>ex:intParameterB</code> can be reused across function descriptions. As they only describe the parameters, and not the actual values, they can be reused. For example, the function <code>function match(str, regex)</code> and <code>function split(str, regex)</code> could reuse the same parameter instantiatons.
+      </p>
+
+      <p>
+        The <code>fno:expects</code> has as range an <code>rdf:List</code>. This could be used to hint applications how many parameters are used, and in what order, however, this is not enforced. This to accommodate technologies where the order of parameters is not of importance.
+      </p>
+
+      <div class="note">
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note2"><span>Note</span></div>
+        <p class="">
+          The range of the predicates used by the parameters don't have to be defined. However, by do defining them, we achieve type hinting.
+        </p>
+      </div>
+
+      <section typeof="bibo:Chapter" resource="#fn-expects" property="bibo:hasPart">
+        <h4 id="fn-expects" resource="#fn-expects"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.1 </span><code>fno:expects</code></span>
+        </h4>
+
+        <p><strong>Domain</strong> <a href="#fn-function">fno:Function</a></p>
+
+        <p><strong>Range</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#List">rdf:List</a> of <a href="#fn-parameter">fno:Parameter</a></p>
+
+      </section>
+
+      <section typeof="bibo:Chapter" resource="#fn-predicate" property="bibo:hasPart">
+        <h4 id="fn-predicate" resource="#fn-predicate"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.2 </span><code>fno:predicate</code></span>
+        </h4>
+
+        <p><strong>Domain</strong> <a href="#fn-function">fno:Function</a></p>
+
+        <p><strong>Range</strong> <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property">rdf:Property</a></p>
+
+      </section>
+    </section>
+
+    <section typeof="bibo:Chapter" resource="#fn-execution" property="bibo:hasPart">
+      <h3 id="fn-execution" resource="#fn-execution"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.5 </span><code>fno:Execution</code></span>
+      </h3>
+      <div class="example">
+        <div class="example-title marker"><span>Example 5</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumExecution</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Execution</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:executes</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumFunction</span>;
+    <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:startValue</span> "2"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer</span>;
+    <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumValue</span> "4"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span></pre></div>
+
+      <p>
+        As can be seen here, are the predicates used as described as parameters of the function.
+        <code>rdf:type</code> and <code>fno:executes</code> cannot be used as parameter predicates, as this would conflict with the description of the execution.
+      </p>
+
+      <section typeof="bibo:Chapter" resource="#fn-executes" property="bibo:hasPart">
+        <h4 id="fn-executes" resource="#fn-executes"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.5.1 </span><code>fno:executes</code></span>
+        </h4>
+
+        <p><strong>Domain</strong> <a href="#fn-execution">fno:Execution</a></p>
+
+        <p><strong>Range</strong> <a href="#fn-function">fno:Function</a></p>
+
+      </section>
+    </section>
+
+    <section typeof="bibo:Chapter" resource="#fn-output" property="bibo:hasPart">
+      <h3 id="fn-output" resource="#fn-output"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.6 </span><code>fno:Output</code></span>
+      </h3>
+      <div class="example">
+        <div class="example-title marker"><span>Example 6</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumFunction</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Function</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:returns</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumOutput.</span>
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumOutput</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Output</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:predicate</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumResult</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:required</span> "<span class="hljs-selector-tag">true</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:boolean.</span>
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumResult</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:type</span> <span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span></pre></div>
+
+      <p>
+        Similar as with <code>fno:Parameter</code>, the connecting predicate is described for <code>fno:Output</code>. After the execution of the function with the correct parameter values, we could return the following turtle:
+      </p>
+
+      <div class="example">
+        <div class="example-title marker"><span>Example 7</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumExecution</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Execution</span>;
+    <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumResult</span> "6"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span></pre></div>
+
+      <p>
+        Similarly as with the parameter descriptions, the output descriptions can be reused across functions.
+      </p>
+
+      <section typeof="bibo:Chapter" resource="#fn-returns" property="bibo:hasPart">
+        <h4 id="fn-returns" resource="#fn-returns"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.6.1 </span><code>fno:returns</code></span>
+        </h4>
+
+        <p><strong>Domain</strong> <a href="#fn-execution">fno:Execution</a></p>
+
+        <p><strong>Range</strong> <a href="#fn-output">fno:Output</a></p>
+
+      </section>
+    </section>
+
+    <section id="complete-example" typeof="bibo:Chapter" resource="#complete-example" property="bibo:hasPart">
+      <h3 id="h-complete-example" resource="#h-complete-example"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.7 </span>Complete example</span>
+      </h3>
+
+      <p>Declaration and description of the function and one execution:</p>
+      <div class="example">
+        <div class="example-title marker"><span>Example 8</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumFunction</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Function</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:name</span> "<span class="hljs-selector-tag">The</span> <span class="hljs-selector-tag">sum</span> <span class="hljs-selector-tag">function</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    <span class="hljs-selector-tag">dcterms</span><span class="hljs-selector-pseudo">:description</span> "<span class="hljs-selector-tag">This</span> <span class="hljs-selector-tag">function</span> <span class="hljs-selector-tag">can</span> <span class="hljs-selector-tag">do</span> <span class="hljs-selector-tag">the</span> <span class="hljs-selector-tag">sum</span> <span class="hljs-selector-tag">of</span> <span class="hljs-selector-tag">two</span> <span class="hljs-selector-tag">integers</span>."^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:solves</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumProblem</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:implements</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumAlgorithm</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:expects</span> ( <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:intParameterA</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:intParameterB</span> );
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:returns</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumOutput.</span>
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:intParameterA</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Parameter</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:predicate</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:startValue</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:required</span> "<span class="hljs-selector-tag">true</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:boolean.</span>
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:startValue</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:type</span> <span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span>
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:intParameterB</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Parameter</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:predicate</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumValue</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:required</span> "<span class="hljs-selector-tag">true</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:boolean.</span>  
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumValue</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:type</span> <span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span>
+
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumOutput</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Output</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:predicate</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumResult</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:required</span> "<span class="hljs-selector-tag">true</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:boolean.</span>
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumResult</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:type</span> <span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span>
+
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumProblem</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Problem</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:name</span> "<span class="hljs-selector-tag">The</span> <span class="hljs-selector-tag">sum</span> <span class="hljs-selector-tag">problem</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    <span class="hljs-selector-tag">dcterms</span><span class="hljs-selector-pseudo">:description</span> "<span class="hljs-selector-tag">This</span> <span class="hljs-selector-tag">handles</span> <span class="hljs-selector-tag">the</span> <span class="hljs-selector-tag">problem</span> <span class="hljs-selector-tag">of</span> <span class="hljs-selector-tag">adding</span> <span class="hljs-selector-tag">two</span> <span class="hljs-selector-tag">integers</span> <span class="hljs-selector-tag">to</span> <span class="hljs-selector-tag">each</span> <span class="hljs-selector-tag">other</span>."^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    <span class="hljs-selector-tag">skos</span><span class="hljs-selector-pseudo">:broader</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:mathProblem</span>;
+
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumAlgorithm</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Algorithm</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:name</span> "<span class="hljs-selector-tag">The</span> <span class="hljs-selector-tag">sum</span> <span class="hljs-selector-tag">algorithm</span>"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    <span class="hljs-selector-tag">dcterms</span><span class="hljs-selector-pseudo">:description</span> "<span class="hljs-selector-tag">About</span> <span class="hljs-selector-tag">how</span> <span class="hljs-selector-tag">to</span> <span class="hljs-selector-tag">add</span> <span class="hljs-selector-tag">two</span> <span class="hljs-selector-tag">integers</span> <span class="hljs-selector-tag">to</span> <span class="hljs-selector-tag">each</span> <span class="hljs-selector-tag">other</span>."^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:string</span>;
+    
+<span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumExecution</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Execution</span>;
+    <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:executes</span> <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumFunction</span>;
+    <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:startValue</span> "2"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer</span>;
+    <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumValue</span> "4"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span></pre></div>
+
+      <p>Resulting output triples:</p>
+      <div class="example">
+        <div class="example-title marker"><span>Example 9</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumExecution</span> <span class="hljs-selector-tag">a</span> <span class="hljs-selector-tag">fno</span><span class="hljs-selector-pseudo">:Execution</span>;
+    <span class="hljs-selector-tag">ex</span><span class="hljs-selector-pseudo">:sumResult</span> "6"^^<span class="hljs-selector-tag">xsd</span><span class="hljs-selector-pseudo">:integer.</span></pre></div>
+    </section>
+
+  </section>
+
+  <section id="hydra-comparison" typeof="bibo:Chapter" resource="#hydra-comparison" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-hydra-comparison" resource="#h-hydra-comparison"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>Abstraction of the <a href="http://www.hydra-cg.com/spec/latest/core/">Hydra specification</a></span>
+    </h2>
+
+    <p>
+      The Hydra specification <a data-lt="function definition" href="#dfn-function-definition" class="internalDFN" data-link-type="dfn">defines</a> Web services semantically. The Function Ontology <a data-lt="function description" href="#dfn-function-description" class="internalDFN" data-link-type="dfn">describes</a> functions.
+      <a href="http://www.hydra-cg.com/spec/latest/core/#hydra:Operation">hydra:Operation</a> is a sub-class of <a href="#fn-function">fno:Function</a>. As such are <a href="http://www.hydra-cg.com/spec/latest/core/#hydra:expects">hydra:expects</a> and <a href="http://www.hydra-cg.com/spec/latest/core/#hydra:returns">hydra:returns</a> sub-properties of <a href="#fn-expects">fno:expects</a> and <a href="#fn-returns">fno:returns</a>, respectively.
+    </p>
+
+    <p>
+      All other vocabulary terms in Hydra are related to the <a data-lt="function definition" href="#dfn-function-definition" class="internalDFN" data-link-type="dfn">definition</a> of the Web service, and are thus out of scope for the Function Ontology.
+    </p>
+  </section>
+
+  <section id="examples" typeof="bibo:Chapter" resource="#examples" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-examples" resource="#h-examples"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>Examples</span>
+    </h2>
+
+    <p>The following sections are a set of FAQs and How-to's regarding the Function Ontology.</p>
+
+    <section id="array-of-parameters" typeof="bibo:Chapter" resource="#array-of-parameters" property="bibo:hasPart">
+      <h3 id="h-array-of-parameters" resource="#h-array-of-parameters"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.1 </span>Array of parameters</span>
+      </h3>
+
+      <p>
+        The model allows for arrays of parameters. For example, the following function <code>function findInString(str, [searchValues...])</code> could be described as follows:
+      </p>
+
+      <div class="example">
+        <div class="example-title marker"><span>Example 10</span></div><pre class="highlight hljs javascript">ex:findInString a fno:<span class="hljs-built_in">Function</span>;
+    fno:name <span class="hljs-string">"Finding multiple values in a string function"</span>^^xsd:string;
+    dcterms:description <span class="hljs-string">"This function returns true if any of the input values is found in the string."</span>^^xsd:string;
+    fno:expects (
+        [
+            fno:predicate ex:body;
+            fno:required <span class="hljs-string">"true"</span>^^xsd:boolean
+        ]
+        [
+            fno:predicate ex:searchValues;
+            fno:required <span class="hljs-string">"true"</span>^^xsd:boolean
+        ]
+        [
+            fno:predicate ex:found;
+            fno:required <span class="hljs-string">"true"</span>^^xsd:boolean
+        ]
+    ).
+
+ex:findExecution a fno:Execution;
+    fno:executes ex:findInString;
+    ex:body <span class="hljs-string">"Try and find some values in this string."</span>^^xsd:string;
+    ex:searchValues (<span class="hljs-string">"Paris"</span> <span class="hljs-string">"Brussels"</span> <span class="hljs-string">"Tokyo"</span> <span class="hljs-string">"Los Angeles"</span>) .</pre></div>
+    </section>
+
+    <section id="required-output" typeof="bibo:Chapter" resource="#required-output" property="bibo:hasPart">
+      <h3 id="h-required-output" resource="#h-required-output"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2 </span>Required output</span>
+      </h3>
+
+      <p>
+        Output can be assigned required or not. For example, thrown errors are an example of optional output.
+      </p>
+    </section>
+
+    <section id="reification-explained" typeof="bibo:Chapter" resource="#reification-explained" property="bibo:hasPart">
+      <h3 id="h-reification-explained" resource="#h-reification-explained"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.3 </span>Reification explained</span>
+      </h3>
+      <p>TODO</p>
+    </section>
+
+    <section id="reference-model" typeof="bibo:Chapter" resource="#reference-model" property="bibo:hasPart">
+      <h3 id="h-reference-model" resource="#h-reference-model"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.4 </span>Reference model</span>
+      </h3>
+      <p>TODO</p>
+    </section>
+
+    <section id="system-architecture-example" typeof="bibo:Chapter" resource="#system-architecture-example" property="bibo:hasPart">
+      <h3 id="h-system-architecture-example" resource="#h-system-architecture-example"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.5 </span>System architecture example</span>
+      </h3>
+      <p>TODO</p>
+    </section>
+  </section>
+
+
+  <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to Top">↑</abbr></a></p>
+  <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+</body>
+</html>
