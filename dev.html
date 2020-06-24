@@ -3,8 +3,8 @@
 <head>
     <title>The Function Ontology</title>
     <meta charset='utf-8'>
-    <link rel="stylesheet" type="text/css" href="../resources/css/extras.css"/>
-    <script src="../resources/js/respec-w3c-common_5.0.4.js" async="" class="remove"></script>
+    <link rel="stylesheet" type="text/css" href="./resources/css/extras.css"/>
+    <script src="./resources/js/respec-w3c-common_5.0.4.js" async="" class="remove"></script>
     <style type="text/css">
         code {
             font-size: 120%;
@@ -46,7 +46,7 @@
             , company: "Ghent University &ndash; imec &ndash; IDLab"
             , url: "https://ben.de-meester.org/#me"
             , extras: [{
-              name: "<img src='../resources/images/orcid_logo.png' />",
+              name: "<img src='./resources/images/orcid_logo.png' />",
               href: "https://orcid.org/0000-0003-0248-0987",
               class: "orcid"
             }]
@@ -57,7 +57,7 @@
             , mailto: "anastasia.dimou@ugent.be"
             , company: "Ghent University &ndash; imec &ndash; IDLab"
             , extras: [{
-              name: "<img src='../resources/images/orcid_logo.png' />",
+              name: "<img src='./resources/images/orcid_logo.png' />",
               href: "https://orcid.org/0000-0003-2138-7972",
               class: "orcid"
             }]
@@ -133,7 +133,9 @@
 
     <p>
         A list of the publications concerning the Function Ontology can be viewed at
-        <a href="https://fno.io">https://fno.io</a>
+        <a href="https://fno.io">https://fno.io</a>.
+        The main publication is
+        <a href="https://doi.org/10.1016/j.future.2019.10.006" target="_blank">Implementation-independent function reuse</a>.
     </p>
 
     <p>
@@ -186,7 +188,9 @@
 
 <section id='sotd'>
     <p>
-        This is an early draft, expect this document to change much and often.
+        This is an early draft,
+        yet efforts are made to keep things stable,
+        given the uptake of FnO in, among others, <a href="https://rml.io">rml.io</a>.
     </p>
 </section>
 
@@ -194,15 +198,21 @@
     <h2>The Problem</h2>
 
     <p>
-        Applications built on top of Linked Data and the Semantic Web
-        are emerging as a novel solution in many different areas, such as -- among others -- decision making and route
-        planning.
-        However, to connect results of these solutions (i.e., the semantic data) with real-world applications,
-        we need a generic way to connect actionable events to semantic data.
+        Functions are essential building blocks of information retrieval and information management.
+        However, efforts implementing these functions are fragmented:
+        one function has multiple implementations, within specific development contexts.
+        This inhibits reuse: metadata of functions and associated implementations
+        need to be found across various search interfaces,
+        and implementation integration requires human interpretation and manual adjustments.
+        An approach is needed, independent of development context and
+        enabling description and exploration of functions and (automatic) instantiation of associated implementations.
     </p>
     <p>
         This specification (and accompanying <a href="https://w3id.org/function/ontology">ontology</a>)
-        explains how to semantically declare and describe functions, their input parameters, and possible outputs.
+        explains how to semantically declare and describe functions, their input parameters, and possible outputs
+        in an implementation-independent manner.
+        Secondly, additional mappings of these abstract functions to (existing) concrete implementations
+        are also discussed.
     </p>
 
 </section>
@@ -292,7 +302,7 @@
         <h3>Function (abstract)</h3>
 
         <figure>
-            <img src="../resources/images/function_ontology_2.png" alt="The Function Ontology"/>
+            <img src="./resources/images/function_ontology_2.png" alt="The Function Ontology"/>
             <figcaption>The Function Ontology</figcaption>
         </figure>
 
@@ -383,23 +393,29 @@ ex:sumAlgorithm a fno:Algorithm;
 ex:sumFunction a fno:Function;
     fno:expects ( ex:intParameterA ex:intParameterB ).
     
-ex:intParameterA a fno:Parameter;
-    fno:predicate ex:startValue;
-    fno:required "true"^^xsd:boolean.
-    
-ex:startValue fno:type xsd:integer.
-    
-ex:intParameterB a fno:Parameter;
-    fno:predicate ex:sumValue;
-    fno:required "true"^^xsd:boolean.  
-    
-ex:sumValue fno:type xsd:integer.
+ex:intParameterA a fno:Parameter ;
+    fno:predicate ex:startValue ;
+    fno:type: xsd:integer ;
+    fno:required "true"^^xsd:boolean .
+
+ex:intParameterB a fno:Parameter ;
+    fno:predicate ex:sumValue ;
+    fno:type: xsd:integer ;
+    fno:required "true"^^xsd:boolean .
     </pre>
 
             <p>
                 This description actually defines which predicates to use when binding the values to the execution of the function
                 (using the <code>fno:predicate</code> predicate).
                 All predicates are allowed, except for <code>rdf:type</code> and <code>fno:executes</code>.
+            </p>
+
+            <p>
+                To specify the datatype of the parameter, the <code>fno:type</code> predicate SHOULD be used.
+            </p>
+
+            <p>
+                To specify whether a parameter is required, the <code>fno:required</code> predicate SHOULD be used.
             </p>
 
             <p>
@@ -441,6 +457,21 @@ ex:sumValue fno:type xsd:integer.
                 </p>
 
             </section>
+
+            <section>
+                <h4 id="fn-type"><code>fno:type</code></h4>
+
+                <p><strong>Domain</strong> <a href="#fn-parameter">fno:Parameter</a></p>
+            </section>
+
+            <section>
+                <h4 id="fn-required"><code>fno:required</code></h4>
+
+                <p><strong>Domain</strong> <a href="#fn-parameter">fno:Parameter</a></p>
+
+                <p><strong>Range</strong> <a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a>
+            </section>
+
         </section>
 
         <section>
@@ -474,16 +505,19 @@ ex:sumExecution a fno:Execution;
 ex:sumFunction a fno:Function;
     fno:returns ( ex:sumOutput ).
     
-ex:sumOutput a fno:Output;
-    fno:predicate ex:sumResult;
-    fno:required "true"^^xsd:boolean.
-    
-ex:sumResult fno:type xsd:integer.
+ex:sumOutput a fno:Output ;
+    fno:predicate ex:sumResult ;
+    fno:type: xsd:integer ;
+    fno:required "true"^^xsd:boolean .
     </pre>
 
             <p>
                 Similar as with <code>fno:Parameter</code>, the connecting predicate is described for
-                <code>fno:Output</code>.
+                <code>fno:Output</code>. To specify the datatype of the output, similarly,
+                the <code>fno:type</code> predicate SHOULD be used.
+            </p>
+
+            <p>
                 After the execution of the function with the correct parameter values, we could return the following turtle:
             </p>
 
@@ -519,23 +553,20 @@ ex:sumFunction a fno:Function;
     fno:expects ( ex:intParameterA ex:intParameterB );
     fno:returns ( ex:sumOutput ).
     
-ex:intParameterA a fno:Parameter;
-    fno:predicate ex:startValue;
+ex:intParameterA a fno:Parameter ;
+    fno:predicate ex:startValue ;
+    fno:type: xsd:integer ;
+    fno:required "true"^^xsd:boolean .
+    
+ex:intParameterB a fno:Parameter ;
+    fno:predicate ex:sumValue ;
+    fno:type: xsd:integer ;
     fno:required "true"^^xsd:boolean.
-    
-ex:startValue fno:type xsd:integer.
-    
-ex:intParameterB a fno:Parameter;
-    fno:predicate ex:sumValue;
-    fno:required "true"^^xsd:boolean.  
-    
-ex:sumValue fno:type xsd:integer.
 
-ex:sumOutput a fno:Output;
-    fno:predicate ex:sumResult;
-    fno:required "true"^^xsd:boolean.
-    
-ex:sumResult fno:type xsd:integer.
+ex:sumOutput a fno:Output ;
+    fno:predicate ex:sumResult ;
+    fno:type: xsd:integer ;
+    fno:required "true"^^xsd:boolean .
 
 ex:sumProblem a fno:Problem;
     fno:name "The sum problem"^^xsd:string;
@@ -565,7 +596,7 @@ ex:sumExecution a fno:Execution;
         <h3>Implementation (concrete)</h3>
 
         <figure>
-            <img src="../resources/images/fno-full_0.6.0.png" alt="The Function Ontology"/>
+            <img src="./resources/images/fno-full_0.6.0.png" alt="The Function Ontology"/>
             <figcaption>The Function Ontology, linked to implementations</figcaption>
         </figure>
 
