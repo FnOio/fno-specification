@@ -23,6 +23,11 @@ for (var i = 0; i < files.length; i++) {
 
 dirs.sort();
 dirs.reverse();
+
+if (dirs[0] === "resources") {
+    dirs.splice(0, 1);
+}
+
 if (dirs[0] === dateString) {
     dirs.splice(0, 1);
 }
@@ -31,6 +36,6 @@ var html = fs.readFileSync('./function.html', 'utf8');
 html = html.replace(/%thisDate%/g, dateString);
 html = html.replace(/%prevDate%/g, dirs[0]);
 fs.writeFileSync(path.resolve(__dirname, 'index.html'), html);
-html = html.replace(/\.\.\/resources/g, '../../resources');
+html = html.replace(/\.\/resources/g, '../resources');
 fs.writeFileSync(path.resolve(__dirname, dateString, 'index.html'), html);
 

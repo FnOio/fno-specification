@@ -1,5 +1,7 @@
 # The Function Ontology Specification
 
+Repository for https://w3id.org/function/spec
+
 ## Quickstart
 
 - edit dev.html
