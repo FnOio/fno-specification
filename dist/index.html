@@ -254,9 +254,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       ]
     }
   ],
-  "_ijt": "dl0aajah7db8e3nojip8rp60i1",
-  "publishISODate": "2020-12-22T00:00:00.000Z",
-  "generatedSubtitle": "Unofficial Draft 22 December 2020"
+  "_ijt": "3fp7mbmr8vst3uos95ps00eube",
+  "publishISODate": "2021-01-05T00:00:00.000Z",
+  "generatedSubtitle": "Unofficial Draft 05 January 2021"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-UD"></head>
 <body class="h-entry"><div class="head">
@@ -264,7 +264,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     
     <h2>
       Unofficial Draft
-      <time class="dt-published" datetime="2020-12-22">22 December 2020</time>
+      <time class="dt-published" datetime="2021-01-05">05 January 2021</time>
     </h2>
     <dl>
       
@@ -351,12 +351,15 @@ the function <code>sum</code> has two input parameters, <code>int a</code> and <
 For example, a possible assignment for the exemplary function could be <code>sum(2, 4)</code>, namely,
 assigning the values <code>2</code> to <code>a</code> and <code>4</code> to <code>b</code>.</li>
 </ul><p>Furthermore, we define following concepts:</p><ul>
-<li>A <dfn data-plurals="functions" id="dfn-function">function</dfn> is a process that performs a specific task by associating one or more
+<li>A <dfn data-plurals="functions" id="dfn-function">function</dfn> is a process that performs a specific task. 
+In essence, its identification is a <a href="#dfn-function-declaration" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-function-declaration-2">function declaration</a>.
+A function can associate one or more
 <a data-lt="parameter" href="#dfn-parameter" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-parameter-1">parameters</a> to an <a href="#dfn-output" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-output-1">output</a>.
-It is an actionable thing that can have input parameters, output, solve certain
+A function can have input parameters, output, solve certain
 <a data-lt="problem" href="#dfn-problem" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-problem-1">problems</a>,
 and can be implemented using certain <a data-lt="algorithm" href="#dfn-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-algorithm-1">algorithms</a>.
-In essence, this is a <a href="#dfn-function-declaration" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-function-declaration-2">function declaration</a>.
+It's execution can also be described in an
+implementation-independent manner, see <a href="https://fno.io/spec/#dfn-execution">https://fno.io/spec/#dfn-execution</a>.
 <em>The ontology term is defined at <a href="#fn-function">fno:Function</a>.</em></li>
 <li>A <dfn data-plurals="problems" id="dfn-problem">problem</dfn> is a general issue. Some problems can be solved by executing a certain <a href="#dfn-function" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-function-1">function</a>.
 For example, the above function solves the <code>doing a sum</code> problem, however,
@@ -386,11 +389,13 @@ An implementation could be, e.g., an NPM package.
 <em>The ontology term is defined at <a href="#fno-implementation">fno:Implementation</a>.</em></li>
 <li>A <dfn id="dfn-mapping">mapping</dfn> links (abstract) <a data-lt="function" href="#dfn-function" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-function-8">functions</a> and (concrete) <a data-lt="implementation" href="#dfn-implementation" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-implementation-2">implementations</a>.
 <em>The ontology term is defined at <a href="#fno-Mapping">fno:Mapping</a>.</em></li>
-</ul></section>
+</ul><p>In this specification, a <a href="#dfn-problem" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-problem-3">problem</a> and <a href="#dfn-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-algorithm-2">algorithm</a> are not described in further detail.
+We mostly provide generic relations to point to other vocabularies or ontologies.
+This way, problems and algorithms can be further specified in complementary vocabularies.</p></section>
 
 <section id="the-function-ontology"><h2 id="ontology"><bdi class="secno">4. </bdi>The Function Ontology<a class="self-link" aria-label="§" href="#ontology"></a></h2><p>The Function Ontology distinguishes between the (<em>abstract</em>) function and the (<em>concrete</em>) implementation. The two can
 be used together, but are complementary.</p><section id="function-abstract"><h3 id="ontology-abstract"><bdi class="secno">4.1 </bdi>Function (abstract)<a class="self-link" aria-label="§" href="#ontology-abstract"></a></h3><figure id="fig-the-function-ontology">
-    <img src="./resources/images/function_ontology_2.png" alt="The Function Ontology">
+    <img src="./resources/images/function_ontology_2.png" alt="The Function Ontology" width="730" height="375">
     <figcaption>Figure <bdi class="figno">1</bdi> <span class="fig-title">The Function Ontology</span></figcaption>
 </figure><p>The Function Ontology follows
 the <a href="http://ontologydesignpatterns.org/wiki/Category:ContentOP">Content Ontology Design Pattern</a>
@@ -398,13 +403,13 @@ and consists of a couple of base classes that need to be instantiated for real w
 Input <a data-lt="parameter" href="#dfn-parameter" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-parameter-2">parameters</a> and <a href="#dfn-output" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-output-3">output</a> values are connected to <a data-lt="function" href="#dfn-function" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-function-9">
 functions</a> via
 <a data-lt="execution" href="#dfn-execution" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-execution-2">executions</a>, using a reification paradigm [<cite><a class="bibref" data-link-type="biblio" href="#bib-rdf-primer" title="RDF Primer">rdf-primer</a></cite>].</p><p>It uses SKOS to define relations between <a data-lt="function" href="#dfn-function" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-function-10">functions</a>,
-<a data-lt="problem" href="#dfn-problem" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-problem-3">problems</a>, and <a data-lt="algorithm" href="#dfn-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-algorithm-2">algorithms</a> [<cite><a class="bibref" data-link-type="biblio" href="#bib-skos-primer" title="SKOS Simple Knowledge Organization System Primer">skos-primer</a></cite>].</p><p>To be consistent with the paradigms used in SKOS, axioms need to be made instead of subclassing the base classes of the
+<a data-lt="problem" href="#dfn-problem" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-problem-4">problems</a>, and <a data-lt="algorithm" href="#dfn-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-algorithm-3">algorithms</a> [<cite><a class="bibref" data-link-type="biblio" href="#bib-skos-primer" title="SKOS Simple Knowledge Organization System Primer">skos-primer</a></cite>].</p><p>To be consistent with the paradigms used in SKOS, axioms need to be made instead of subclassing the base classes of the
 Function Ontology. The reification paradigm allows to define the connection between an <a href="#dfn-execution" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-execution-3">execution</a> and the input
 <a data-lt="parameter" href="#dfn-parameter" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-parameter-3">parameters</a> and <a href="#dfn-output" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-output-4">output</a> values. This allows for reusing these connection definitions,
 and more meaningful connections between input
 <a data-lt="parameter" href="#dfn-parameter" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-parameter-4">parameters</a> and <a href="#dfn-execution" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-execution-4">execution</a>.</p><p>No cardinalities are defined in the Function Ontology, as there are no hard limits on cardinality to be defined. A <a href="#dfn-function" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-function-11">
-function</a> can implement multiple <a data-lt="algorithm" href="#dfn-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-algorithm-3">algorithms</a>, solve multiple
-<a data-lt="problem" href="#dfn-problem" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-problem-4">problems</a>, and have multiple <a data-lt="execution" href="#dfn-execution" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-execution-5">executions</a>. All executions can have
+function</a> can implement multiple <a data-lt="algorithm" href="#dfn-algorithm" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-algorithm-4">algorithms</a>, solve multiple
+<a data-lt="problem" href="#dfn-problem" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-problem-5">problems</a>, and have multiple <a data-lt="execution" href="#dfn-execution" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-execution-5">executions</a>. All executions can have
 multiple input <a data-lt="parameter" href="#dfn-parameter" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-parameter-5">parameters</a> and <a href="#dfn-output" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-output-5">output</a> values. Vice versa, input parameters and output
 values can be linked to multiple executions, and an execution (i.e., a set of input values and output values) can be
 linked to multiple functions.</p><section id="fno-function"><h4 id="fn-function"><bdi class="secno">4.1.1 </bdi><code>fno:Function</code><a class="self-link" aria-label="§" href="#fn-function"></a></h4><div class="example" id="example-1-generatedID">
@@ -554,7 +559,7 @@ ex:sumExecution
     a            fno:Execution ;
     ex:sumResult "6"^^xsd:integer .</code></pre>
       </div></section></section><section id="implementation-concrete"><h3 id="ontology-concrete"><bdi class="secno">4.2 </bdi>Implementation (concrete)<a class="self-link" aria-label="§" href="#ontology-concrete"></a></h3><figure id="fig-the-function-ontology-linked-to-implementations">
-    <img src="./resources/images/fno-full_0.6.0.png" alt="The Function Ontology">
+    <img src="./resources/images/fno-full_0.6.0.png" alt="The Function Ontology" width="1265" height="468">
     <figcaption>Figure <bdi class="figno">2</bdi> <span class="fig-title">The Function Ontology, linked to implementations</span></figcaption>
 </figure><section id="fno-implementation-0"><h4 id="fno-implementation"><bdi class="secno">4.2.1 </bdi><code>fno:Implementation</code><a class="self-link" aria-label="§" href="#fno-implementation"></a></h4><div class="example" id="example-10-generatedID">
         <div class="marker">
@@ -763,9 +768,9 @@ either because of performance or practicality reasons.</p></section></section>
       <b>Referenced in:</b>
       <ul>
     <li>
-    <a href="#ref-for-dfn-problem-1">3. Definitions</a> <a href="#ref-for-dfn-problem-2">(2)</a> 
+    <a href="#ref-for-dfn-problem-1">3. Definitions</a> <a href="#ref-for-dfn-problem-2">(2)</a> <a href="#ref-for-dfn-problem-3">(3)</a> 
   </li><li>
-    <a href="#ref-for-dfn-problem-3">4.1 Function (abstract)</a> <a href="#ref-for-dfn-problem-4">(2)</a> 
+    <a href="#ref-for-dfn-problem-4">4.1 Function (abstract)</a> <a href="#ref-for-dfn-problem-5">(2)</a> 
   </li>
   </ul>
     </aside><aside class="dfn-panel" id="dfn-panel-for-dfn-algorithm" hidden="">
@@ -777,9 +782,9 @@ either because of performance or practicality reasons.</p></section></section>
       <b>Referenced in:</b>
       <ul>
     <li>
-    <a href="#ref-for-dfn-algorithm-1">3. Definitions</a> 
+    <a href="#ref-for-dfn-algorithm-1">3. Definitions</a> <a href="#ref-for-dfn-algorithm-2">(2)</a> 
   </li><li>
-    <a href="#ref-for-dfn-algorithm-2">4.1 Function (abstract)</a> <a href="#ref-for-dfn-algorithm-3">(2)</a> 
+    <a href="#ref-for-dfn-algorithm-3">4.1 Function (abstract)</a> <a href="#ref-for-dfn-algorithm-4">(2)</a> 
   </li>
   </ul>
     </aside><aside class="dfn-panel" id="dfn-panel-for-dfn-parameter" hidden="">

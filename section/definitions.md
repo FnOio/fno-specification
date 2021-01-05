@@ -13,12 +13,15 @@ The following document makes a clear distinction between following concepts:
 
 Furthermore, we define following concepts:
 
-- A <dfn>function</dfn> is a process that performs a specific task by associating one or more
+- A <dfn>function</dfn> is a process that performs a specific task. 
+  In essence, its identification is a <a>function declaration</a>.
+  A function can associate one or more
   <a data-lt="parameter">parameters</a> to an <a>output</a>.
-  It is an actionable thing that can have input parameters, output, solve certain
+  A function can have input parameters, output, solve certain
   <a data-lt="problem">problems</a>,
   and can be implemented using certain <a data-lt="algorithm">algorithms</a>.
-  In essence, this is a <a>function declaration</a>.
+  It's execution can also be described in an
+  implementation-independent manner, see https://fno.io/spec/#dfn-execution.
   _The ontology term is defined at [fno:Function](#fn-function)._
 - A <dfn>problem</dfn> is a general issue. Some problems can be solved by executing a certain <a>function</a>.
   For example, the above function solves the `doing a sum` problem, however,
@@ -48,3 +51,7 @@ Furthermore, we define following concepts:
   _The ontology term is defined at [fno:Implementation](#fno-implementation)._
 - A <dfn>mapping</dfn> links (abstract) <a data-lt="function">functions</a> and (concrete) <a data-lt="implementation">implementations</a>.
   _The ontology term is defined at [fno:Mapping](#fno-Mapping)._
+  
+In this specification, a <a>problem</a> and <a>algorithm</a> are not described in further detail.
+We mostly provide generic relations to point to other vocabularies or ontologies.
+This way, problems and algorithms can be further specified in complementary vocabularies.
