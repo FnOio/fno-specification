@@ -8,15 +8,15 @@ var path = require('path');
 var dateString = (new Date()).toISOString().split('T')[0].replace(/-/g, '');
 
 try {
-    fs.mkdirSync(path.resolve(__dirname, dateString));
+    fs.mkdirSync(path.resolve(__dirname, 'dist', dateString));
 } catch (e) {
 
 }
 
-var files = fs.readdirSync(path.resolve(__dirname));
+var files = fs.readdirSync(path.resolve(__dirname, 'dist'));
 var dirs = [];
 for (var i = 0; i < files.length; i++) {
-    if (fs.lstatSync(path.resolve(__dirname, files[i])).isDirectory()) {
+    if (fs.lstatSync(path.resolve(__dirname, 'dist', files[i])).isDirectory()) {
         dirs.push(files[i]);
     }
 }
@@ -35,7 +35,7 @@ if (dirs[0] === dateString) {
 var html = fs.readFileSync('./function.html', 'utf8');
 html = html.replace(/%thisDate%/g, dateString);
 html = html.replace(/%prevDate%/g, dirs[0]);
-fs.writeFileSync(path.resolve(__dirname, 'index.html'), html);
+fs.writeFileSync(path.resolve(__dirname, 'dist', 'index.html'), html);
 html = html.replace(/\.\/resources/g, '../resources');
-fs.writeFileSync(path.resolve(__dirname, dateString, 'index.html'), html);
+fs.writeFileSync(path.resolve(__dirname, 'dist', dateString, 'index.html'), html);
 

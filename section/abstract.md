@@ -12,9 +12,9 @@ The Function Ontology's namespace is https://w3id.org/function/ontology#
 
 The preferred prefix is `fno:`
 
-The discussed ontology's version is [0.6.0](https://w3id.org/function/ontology/0.6.0).
+The discussed ontology's version is [1.0.0](https://w3id.org/function/ontology/1.0.0).
 
 The used vocabularies are the
-[FnO mapping vocabulary](https://w3id.org/function/vocabulary/mapping) (`fnom:`)
+[FnO mapping vocabulary v0.2.1](https://w3id.org/function/vocabulary/mapping/0.2.1) (`fnom:`)
 and the
-[FnO implementation vocabulary](https://w3id.org/function/vocabulary/implementation) (`fnoi:`).
+[FnO implementation vocabulary v0.1.1](https://w3id.org/function/vocabulary/implementation/0.1.1) (`fnoi:`).
