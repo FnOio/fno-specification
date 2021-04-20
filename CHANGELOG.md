@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Unreleased
 
+## 2020-04-20
+
+### Fixed
+
+- image used wrong predicate `fno:withMapping` -> changed to the correct `fno:uses`
+
 ## 2020-01-05
 
 ### Added

@@ -271,7 +271,7 @@ ex:sumExecution
 ### Implementation (concrete) {#ontology-concrete}
 
 <figure>
-    <img src="./resources/images/fno-full_0.6.0.png" alt="The Function Ontology"/>
+    <img src="./resources/images/fno-full_0.6.1.png" alt="The Function Ontology"/>
     <figcaption>The Function Ontology, linked to implementations</figcaption>
 </figure>
 
