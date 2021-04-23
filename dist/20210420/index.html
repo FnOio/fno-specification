@@ -1,6 +1,6 @@
 <!DOCTYPE html><html dir="ltr" lang="en"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 26.5.2">
+<meta name="generator" content="ReSpec 26.6.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -383,7 +383,7 @@ A <a href="#dfn-function" class="internalDFN" data-link-type="dfn" id="ref-for-d
 An <a href="#dfn-execution" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-execution-1">execution</a> has as result the value of the <a href="#dfn-output" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-output-2">output</a> of the function.
 For example, <code>sum(2, 4)</code> is an execution of the example function.
 The value of the output is known after the function is executed, and should in this case be the integer <code>6</code>.
-<em>The ontology term is defined at <a href="fn-execution">fno:Execution</a>.</em></li>
+<em>The ontology term is defined at <a href="#fn-execution">fno:Execution</a>.</em></li>
 <li>An <dfn data-plurals="implementations" id="dfn-implementation" tabindex="0" role="link" aria-haspopup="dialog" title="Show what links to this definition">implementation</dfn> defines the internal workings of one or more <a data-lt="function" href="#dfn-function" class="internalDFN" data-link-type="dfn" id="ref-for-dfn-function-7">functions</a>.
 This depends on the used development context, i.e., the used programming language and execution environment.
 An implementation could be, e.g., an NPM package.
@@ -396,7 +396,7 @@ This way, problems and algorithms can be further specified in complementary voca
 
 <section id="the-function-ontology"><h2 id="ontology"><bdi class="secno">4. </bdi>The Function Ontology<a class="self-link" aria-label="§" href="#ontology"></a></h2><p>The Function Ontology distinguishes between the (<em>abstract</em>) function and the (<em>concrete</em>) implementation. The two can
 be used together, but are complementary.</p><section id="function-abstract"><h3 id="ontology-abstract"><bdi class="secno">4.1 </bdi>Function (abstract)<a class="self-link" aria-label="§" href="#ontology-abstract"></a></h3><figure id="fig-the-function-ontology">
-    <img src="../resources/images/function_ontology_2.png" alt="The Function Ontology" width="730" height="375">
+    <img src="../resources/images/function_ontology_2.png" alt="The Function Ontology">
     <figcaption>Figure <bdi class="figno">1</bdi> <span class="fig-title">The Function Ontology</span></figcaption>
 </figure><p>The Function Ontology follows
 the <a href="http://ontologydesignpatterns.org/wiki/Category:ContentOP">Content Ontology Design Pattern</a>
@@ -569,7 +569,7 @@ ex:sumExecution
     ex:sumResult "6"^^xsd:integer .
 </code></pre>
       </div></section></section><section id="implementation-concrete"><h3 id="ontology-concrete"><bdi class="secno">4.2 </bdi>Implementation (concrete)<a class="self-link" aria-label="§" href="#ontology-concrete"></a></h3><figure id="fig-the-function-ontology-linked-to-implementations">
-    <img src="../resources/images/fno-full_0.6.1.png" alt="The Function Ontology" width="1340" height="558">
+    <img src="../resources/images/fno-full_0.6.1.png" alt="The Function Ontology">
     <figcaption>Figure <bdi class="figno">2</bdi> <span class="fig-title">The Function Ontology, linked to implementations</span></figcaption>
 </figure><section id="fno-implementation-0"><h4 id="fno-implementation"><bdi class="secno">4.2.1 </bdi><code>fno:Implementation</code><a class="self-link" aria-label="§" href="#fno-implementation"></a></h4><div class="example" id="example-10-generatedID">
         <div class="marker">
@@ -759,7 +759,7 @@ either because of performance or practicality reasons.</p></section></section>
     <dl class="bibliography"><dt id="bib-10.1016/j.future.2019.10.006">[10.1016/j.future.2019.10.006]</dt><dd><a href="https://doi.org/10.1016/j.future.2019.10.006"><cite>Implementation-independent function reuse</cite></a>. Ben De Meester; Tom Seymoens; Anastasia Dimou; Ruben Verborgh.  Elsevier. September 2020. Future Generation Computer Systems. URL: <a href="https://doi.org/10.1016/j.future.2019.10.006">https://doi.org/10.1016/j.future.2019.10.006</a></dd></dl>
   </section></section><p role="navigation" id="back-to-top">
     <a href="#title"><abbr title="Back to Top">↑</abbr></a>
-  </p><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-function-declaration" aria-label="Links in this document to definition: function declaration" hidden="">
+  </p><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-function-declaration" aria-label="Links in this document to definition: function declaration" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-function-declaration" aria-label="Permalink for definition: function declaration. Activate to close this dialog.">Permalink</a>
@@ -773,7 +773,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-function-declaration-3" title="§ 4.1.1 fno:Function">§ 4.1.1 fno:Function</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-function-description" aria-label="Links in this document to definition: function description" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-function-description" aria-label="Links in this document to definition: function description" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-function-description" aria-label="Permalink for definition: function description. Activate to close this dialog.">Permalink</a>
@@ -785,7 +785,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-function-description-1" title="§ 3. Definitions">§ 3. Definitions</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-assignment" aria-label="Links in this document to definition: assignment" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-assignment" aria-label="Links in this document to definition: assignment" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-assignment" aria-label="Permalink for definition: assignment. Activate to close this dialog.">Permalink</a>
@@ -797,7 +797,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-assignment-1" title="§ 3. Definitions">§ 3. Definitions</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-function" aria-label="Links in this document to definition: function" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-function" aria-label="Links in this document to definition: function" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-function" aria-label="Permalink for definition: function. Activate to close this dialog.">Permalink</a>
@@ -811,7 +811,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-function-9" title="§ 4.1 Function (abstract)">§ 4.1 Function (abstract)</a> <a href="#ref-for-dfn-function-10" title="Reference 2">(2)</a> <a href="#ref-for-dfn-function-11" title="Reference 3">(3)</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-problem" aria-label="Links in this document to definition: problem" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-problem" aria-label="Links in this document to definition: problem" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-problem" aria-label="Permalink for definition: problem. Activate to close this dialog.">Permalink</a>
@@ -825,7 +825,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-problem-4" title="§ 4.1 Function (abstract)">§ 4.1 Function (abstract)</a> <a href="#ref-for-dfn-problem-5" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-algorithm" aria-label="Links in this document to definition: algorithm" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-algorithm" aria-label="Links in this document to definition: algorithm" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-algorithm" aria-label="Permalink for definition: algorithm. Activate to close this dialog.">Permalink</a>
@@ -839,7 +839,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-algorithm-3" title="§ 4.1 Function (abstract)">§ 4.1 Function (abstract)</a> <a href="#ref-for-dfn-algorithm-4" title="Reference 2">(2)</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-parameter" aria-label="Links in this document to definition: parameter" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-parameter" aria-label="Links in this document to definition: parameter" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-parameter" aria-label="Permalink for definition: parameter. Activate to close this dialog.">Permalink</a>
@@ -853,7 +853,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-parameter-2" title="§ 4.1 Function (abstract)">§ 4.1 Function (abstract)</a> <a href="#ref-for-dfn-parameter-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-parameter-4" title="Reference 3">(3)</a> <a href="#ref-for-dfn-parameter-5" title="Reference 4">(4)</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-output" aria-label="Links in this document to definition: output" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-output" aria-label="Links in this document to definition: output" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-output" aria-label="Permalink for definition: output. Activate to close this dialog.">Permalink</a>
@@ -867,7 +867,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-output-3" title="§ 4.1 Function (abstract)">§ 4.1 Function (abstract)</a> <a href="#ref-for-dfn-output-4" title="Reference 2">(2)</a> <a href="#ref-for-dfn-output-5" title="Reference 3">(3)</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-execution" aria-label="Links in this document to definition: execution" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-execution" aria-label="Links in this document to definition: execution" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-execution" aria-label="Permalink for definition: execution. Activate to close this dialog.">Permalink</a>
@@ -881,7 +881,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-execution-2" title="§ 4.1 Function (abstract)">§ 4.1 Function (abstract)</a> <a href="#ref-for-dfn-execution-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-execution-4" title="Reference 3">(3)</a> <a href="#ref-for-dfn-execution-5" title="Reference 4">(4)</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-implementation" aria-label="Links in this document to definition: implementation" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-implementation" aria-label="Links in this document to definition: implementation" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-implementation" aria-label="Permalink for definition: implementation. Activate to close this dialog.">Permalink</a>
@@ -895,7 +895,7 @@ either because of performance or practicality reasons.</p></section></section>
     <a href="#ref-for-dfn-implementation-3" title="§ 4.2.1.1 Example: Hydra">§ 4.2.1.1 Example: Hydra</a> 
   </li>
   </ul>
-    </aside><aside class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-mapping" aria-label="Links in this document to definition: mapping" hidden="">
+    </div><div class="dfn-panel" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-mapping" aria-label="Links in this document to definition: mapping" hidden="">
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-mapping" aria-label="Permalink for definition: mapping. Activate to close this dialog.">Permalink</a>
@@ -905,7 +905,7 @@ either because of performance or practicality reasons.</p></section></section>
       <ul>
       <li>Not referenced in this document.</li>
     </ul>
-    </aside><script id="respec-dfn-panel">(() => {
+    </div><script id="respec-dfn-panel">(() => {
 // @ts-check
 if (document.respec) {
   document.respec.ready.then(setupPanel);

@@ -44,7 +44,7 @@ Furthermore, we define following concepts:
   An <a>execution</a> has as result the value of the <a>output</a> of the function.
   For example, `sum(2, 4)` is an execution of the example function.
   The value of the output is known after the function is executed, and should in this case be the integer `6`.
-  _The ontology term is defined at [fno:Execution](fn-execution)._
+  _The ontology term is defined at [fno:Execution](#fn-execution)._
 - An <dfn>implementation</dfn> defines the internal workings of one or more <a data-lt="function">functions</a>.
   This depends on the used development context, i.e., the used programming language and execution environment.
   An implementation could be, e.g., an NPM package.

@@ -15,17 +15,18 @@
 var fs = require('fs');
 var path = require('path');
 
-if (process.argv.length != 3) {
+if (process.argv.length != 3 && process.argv.length != 4) {
     console.log("");
     console.log("Please provide the name of the HTML file which should be used to populate the new version of the spec");
     console.log("The placeholders %thisDate% and %prevDate% will be replaced with respective values.");
-    console.log("Usage: node publish.sh [spec HTML version]");
+    console.log("Optionally, you can also provide the date");
+    console.log("Usage: node publish.sh [spec HTML version] [yyyymmdd?]");
     process.exit(1);
 }
 var inputFilename = process.argv[2];
 
 // Create a new directory for the new version within dist, e.g. dist/20210118
-var dateString = (new Date()).toISOString().split('T')[0].replace(/-/g, '');
+var dateString = process.argv[3] || (new Date()).toISOString().split('T')[0].replace(/-/g, '');
 try {
     fs.mkdirSync(path.resolve(__dirname, 'dist', dateString));
 } catch (e) {
