@@ -103,14 +103,14 @@ ex:sumFunction
 ex:intParameterA
     a             fno:Parameter ;
     fno:predicate ex:startValue ;
-    fno:type:     xsd:integer ;
+    fno:type      xsd:integer ;
     fno:required  "true"^^xsd:
         boolean .
 
 ex:intParameterB
     a             fno:Parameter ;
     fno:predicate ex:sumValue ;
-    fno:type:     xsd:integer ;
+    fno:type      xsd:integer ;
     fno:required  "true"^^xsd:boolean .
 ```
 
@@ -185,7 +185,7 @@ ex:sumFunction
 ex:sumOutput
     a             fno:Output ;
     fno:predicate ex:sumResult ;
-    fno:type:     xsd:integer ;
+    fno:type      xsd:integer ;
     fno:required  "true"^^xsd:boolean .
 ```
 
@@ -227,19 +227,19 @@ ex:sumFunction
 ex:intParameterA
     a             fno:Parameter ;
     fno:predicate ex:startValue ;
-    fno:type:     xsd:integer ;
+    fno:type      xsd:integer ;
     fno:required  "true"^^xsd:boolean .
 
 ex:intParameterB
     a             fno:Parameter ;
     fno:predicate ex:sumValue ;
-    fno:type:     xsd:integer ;
+    fno:type      xsd:integer ;
     fno:required  "true"^^xsd:boolean .
 
 ex:sumOutput
     a             fno:Output ;
     fno:predicate ex:sumResult ;
-    fno:type:     xsd:integer ;
+    fno:type      xsd:integer ;
     fno:required  "true"^^xsd:boolean .
 
 ex:sumProblem
