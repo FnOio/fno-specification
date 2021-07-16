@@ -14,7 +14,7 @@ The preferred prefix is `fno:`
 
 The discussed ontology's version is [1.0.0](https://w3id.org/function/ontology/1.0.0).
 
-The used vocabularies are the
-[FnO mapping vocabulary v0.2.1](https://w3id.org/function/vocabulary/mapping/0.2.1) (`fnom:`)
-and the
-[FnO implementation vocabulary v0.1.1](https://w3id.org/function/vocabulary/implementation/0.1.1) (`fnoi:`).
+The used vocabularies are 
+* [FnO mapping vocabulary v0.2.1](https://w3id.org/function/vocabulary/mapping/0.2.1) (`fnom:`)
+* [FnO implementation vocabulary v0.1.1](https://w3id.org/function/vocabulary/implementation/0.1.1) (`fnoi:`).
+* [FnO composition vocabulary v0.1.1](https://w3id.org/function/vocabulary/composition/0.1.1) (`fnoc:`).
