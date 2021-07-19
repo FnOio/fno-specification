@@ -420,7 +420,7 @@ ex:leftPadMapping
 
 As an alternative to providing an <a>implementation</a> of a <a>function</a>, we can also define how it can be realized 
 using other <a>function</a>s, namely by defining a <a>composition</a>. To illustrate this point, we first define a 
-function, `ex:sum3Function`, that compustes the sum of three integers. We are using the parameter and output definitions made earlier, 
+function, `ex:sum3Function`, that computes the sum of three integers. We are using the parameter and output definitions made earlier, 
 so we only have to provide the third parameter, `ex:intParameterC`. For brevity, we omit the corresponding <a>problem</a> and <a>algorithm</a>. 
 
 ```turtle "example": " "
@@ -492,7 +492,7 @@ ex:sum3Composition
     [
         fnoc:mapFrom [
             fnoc:constituentFunction ex:sum3Function;
-            fnoc:functionOutput ex:intParameterC  
+            fnoc:functionParameter ex:intParameterC  
         ] ;
         fnoc:mapTo [
             fnoc:constituentFunction ex:sum3Function_2;
@@ -506,7 +506,7 @@ ex:sum3Composition
         ] ;
         fnoc:mapTo [
             fnoc:constituentFunction ex:sum3Function;
-            fnoc:functionParameter ex:sumOutput
+            fnoc:functionOutput ex:sumOutput
         ] 
     ] .
 ``` 
