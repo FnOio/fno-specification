@@ -374,6 +374,45 @@ ex:leftPadExecution
     fno:uses ex:leftPadMapping
 ```
 
+#### Full example
+
+```turtle "example": " "
+ex:leftPad
+    a           fno:Function ;
+    fno:expects ( ex:inputStringParameter ex:paddingParameter ) ;
+    fno:returns ( ex:outputStringOutput ) .
+
+ex:inputStringParameter
+    a             fno:Parameter ;
+    fno:predicate ex:inputString ;
+    fno:type      xsd:string ;
+    fno:required  "true"^^xsd:boolean .
+
+ex:paddingParameter
+    a             fno:Parameter ;
+    fno:predicate ex:padding ;
+    fno:type      xsd:int ;
+    fno:required  "false"^^xsd:boolean .
+
+ex:leftPadImplementation
+    a         fnoi:NpmPackage ;
+    doap:name "left-pad" .
+
+ex:leftPadMapping
+    a                    fno:Mapping ;
+    fno:function         ex:leftPad ;
+    fno:implementation   ex:leftPadImplementation ;
+    fno:methodMapping    [ a                fnom:StringMethodMapping ;
+                           fnom:method-name "doLeftPadding" ] ;
+    fno:parameterMapping [ a                                    fnom:PositionParameterMapping ;
+                           fnom:functionParameter               ex:inputStringParameter ;
+                           fnom:implementationParameterPosition "2"^^xsd:int ] ;
+    fno:parameterMapping [ a                                    fnom:PositionParameterMapping ;
+                           fnom:functionParameter               ex:paddingParameter ;
+                           fnom:implementationParameterPosition "1"^^xsd:int ] ;
+    fno:returnMapping    [ a                   fnom:DefaultReturnMapping ;
+                           fnom:functionOutput ex:outputStringOutput ] .
+```
 
 ### Function Composition {#composition}
 
@@ -390,7 +429,7 @@ ex:sum3Function
     fno:name            "Sum3"^^xsd:string ;
     dcterms:description "This function calculates the sum of three integers."^^xsd:string ;
     fno:expects ( ex:intParameterA ex:intParameterB ex:intParameterC ) ;
-    fno:returns ( ex:intOutput ) 
+    fno:returns ( ex:sumOutput ) 
 
 ex:intParameterC
     a             fno:Parameter ;
@@ -436,7 +475,7 @@ ex:sum3Composition
             fnoc:functionParameter ex:intParameterB 
         ] ;
         fnoc:mapTo [
-            fnoc:constituentFunction ex_sum3Function_1;
+            fnoc:constituentFunction ex:sum3Function_1;
             fnoc:functionParameter ex:intParameterB
         ] 
     ],
@@ -559,7 +598,7 @@ ex:add10 a fno:Function ;
     fno:name            "add10"^^xsd:string ;
     dcterms:description "This function adds 10 to its integer parameter."^^xsd:string ;
     fno:expects ( ex:intParameterB ) ;
-    fno:returns ( ex:intOutput ) 
+    fno:returns ( ex:sumOutput ) 
 
 ex:add10Composition a  fnoc:Composition ;
     fnoc:composedOf [
@@ -608,42 +647,4 @@ values are specified the use of `fnoc:partiallyApplies` is equivalent to <a href
 
 
 
-### Full example
 
-```turtle "example": " "
-ex:leftPad
-    a           fno:Function ;
-    fno:expects ( ex:inputStringParameter ex:paddingParameter ) ;
-    fno:returns ( ex:outputStringOutput ) .
-
-ex:inputStringParameter
-    a             fno:Parameter ;
-    fno:predicate ex:inputString ;
-    fno:type      xsd:string ;
-    fno:required  "true"^^xsd:boolean .
-
-ex:paddingParameter
-    a             fno:Parameter ;
-    fno:predicate ex:padding ;
-    fno:type      xsd:int ;
-    fno:required  "false"^^xsd:boolean .
-
-ex:leftPadImplementation
-    a         fnoi:NpmPackage ;
-    doap:name "left-pad" .
-
-ex:leftPadMapping
-    a                    fno:Mapping ;
-    fno:function         ex:leftPad ;
-    fno:implementation   ex:leftPadImplementation ;
-    fno:methodMapping    [ a                fnom:StringMethodMapping ;
-                           fnom:method-name "doLeftPadding" ] ;
-    fno:parameterMapping [ a                                    fnom:PositionParameterMapping ;
-                           fnom:functionParameter               ex:inputStringParameter ;
-                           fnom:implementationParameterPosition "2"^^xsd:int ] ;
-    fno:parameterMapping [ a                                    fnom:PositionParameterMapping ;
-                           fnom:functionParameter               ex:paddingParameter ;
-                           fnom:implementationParameterPosition "1"^^xsd:int ] ;
-    fno:returnMapping    [ a                   fnom:DefaultReturnMapping ;
-                           fnom:functionOutput ex:outputStringOutput ] .
-```
