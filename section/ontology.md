@@ -482,7 +482,7 @@ ex:sum3Composition
     [
         fnoc:mapFrom [
             fnoc:constituentFunction ex:sum3Function_1;
-            fnoc:functionOutput ex:intOutput 
+            fnoc:functionOutput ex:sumOutput 
         ] ;
         fnoc:mapTo [
             fnoc:constituentFunction ex:sum3Function_2;
@@ -502,11 +502,11 @@ ex:sum3Composition
     [
         fnoc:mapFrom [
             fnoc:constituentFunction ex:sum3Function_2;
-            fnoc:functionOutput ex:intOutput  
+            fnoc:functionOutput ex:sumOutput  
         ] ;
         fnoc:mapTo [
             fnoc:constituentFunction ex:sum3Function;
-            fnoc:functionParameter ex:intOutput
+            fnoc:functionParameter ex:sumOutput
         ] 
     ] .
 ``` 
@@ -621,11 +621,11 @@ ex:add10Composition a  fnoc:Composition ;
     [
         fnoc:mapFrom [
             fnoc:constituentFunction ex:sumFunction ;
-            fnoc:functionOutput ex:intOutput 
+            fnoc:functionOutput ex:sumOutput 
         ];
         fnoc:mapTo [
             fnoc:constituentFunction ex:add10 ;
-            fnoc:functionOutput ex:intOutput
+            fnoc:functionOutput ex:sumOutput
         ]
     ] .
 
