@@ -520,14 +520,9 @@ properties used for this are <a href="#fnoc-mapFrom">mapFrom</a> and <a href="#f
 CompositionMapping can link to a constant term via <a href="#fnoc-mapFromTerm">mapFromTerm</a> instead of 
 <a href="#fnoc-mapFrom">mapFrom</a>.
 
-#### `fnoc:compositionMappingSource` {#fnoc-compositionMappingSource}
+#### `fnoc:compositionMappingEndpoint` {#fnoc-compositionMappingEndpoint}
 
-The source of a compositionMapping, defining the function and parameter or output that is mapped to the `target`.
-
-#### `fnoc:compositionMappingTarget` {#fnoc-compositionMappingTarget}
-
-The target of a compositionMapping, defining the function and parameter or output that the `source` is mapped to.
-
+The `source` or `target` of a compositionMapping, defining a combination of <a>function</a> and either <a>parameter</a> or <a>output</a> that is mapped to the `target`.
 
 ##### `fnoc:composedOf` {#fnoc-composedOf}
 
@@ -543,19 +538,19 @@ The target of a compositionMapping, defining the function and parameter or outpu
 
 ##### `fnoc:constituentFunction` {#fnoc-constituentFunction}
 
-**Domain** <a href="#fnoc-compositionMappingSource">fnoc:CompositionMappingSource</a> or <a href="#fnoc-compositionMappingSource">fnoc:CompositionMappingTarget</a>
+**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> or <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
 
 **Range** <a href="#fn-function">fno:Function</a>
 
 ##### `fnoc:functionOutput` {#fnoc-functionOutput}
 
-**Domain** <a href="#fnoc-compositionMappingSource">fnoc:CompositionMappingSource</a> or <a href="#fnoc-compositionMappingSource">fnoc:CompositionMappingTarget</a>
+**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> or <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
 
 **Range** <a href="#fn-output">fno:Output</a>
 
 ##### `fnoc:functionParameter` {#fnoc-functionParameter}
 
-**Domain** <a href="#fnoc-compositionMappingSource">fnoc:CompositionMappingSource</a> or <a href="#fnoc-compositionMappingSource">fnoc:CompositionMappingTarget</a>
+**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> or <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
 
 **Range** <a href="#fn-output">fno:Parameter</a>
 
@@ -563,7 +558,7 @@ The target of a compositionMapping, defining the function and parameter or outpu
 
 **Domain** <a href="#fnoc-compositionMapping">fnoc:CompositionMapping</a>
 
-**Range** <a href="#fnoc-compositionMappingSource">fnoc:CompositionMappingSource</a> 
+**Range** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> 
 
 ##### `fnoc:mapFromTerm` {#fnoc-mapFromTerm}
 
@@ -578,7 +573,7 @@ Allows for using constants in a <a>composition</a>.
 
 **Domain** <a href="#fnoc-compositionMapping">fnoc:CompositionMapping</a>
 
-**Range** <a href="#fnoc-compositionMappingTarget">fnoc:CompositionMappingTarget</a> 
+**Range** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> 
 
 ### Partial Function Application {#partialFunctionApplication}
 
