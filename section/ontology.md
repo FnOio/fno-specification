@@ -416,8 +416,9 @@ ex:leftPadMapping
 
 ### Function Composition {#composition}
 
+> Function Composition is experimental and subject to change.
 
-
+ 
 As an alternative to providing an <a>implementation</a> of a <a>function</a>, we can also define how it can be realized 
 using other <a>function</a>s, namely by defining a <a>composition</a>. To illustrate this point, we first define a 
 function, `ex:sum3Function`, that computes the sum of three integers. We are using the parameter and output definitions made earlier, 
@@ -448,7 +449,8 @@ We will realize `ex:sum3Function` (defined in the previous paragraph) using `ex:
 
 In this construct, we use `ex:sumFunction` twice. In order to be able to reference the two distinct calls of the
 function `ex:sumFunction` unambiguously, we first create two distinct *applications* 
-of it using <a href="#fnoc-applies">`fnoc:applies`</a>. Then, we define the composition using a set of <a>composition mapping</a>s.  
+of it using <a href="#fnoc-applies">`fnoc:applies`</a> (This is only required when using the same function more than once in a composition).
+Then, we define the composition using a set of <a>composition mapping</a>s.  
 ```turtle "example": " " 
 
 # create distinct instances of the function so we can reference them unambiguously 

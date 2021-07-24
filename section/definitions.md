@@ -53,7 +53,7 @@ Furthermore, we define following concepts:
   _The ontology term is defined at [fno:Mapping](#fno-Mapping)._
 - A <dfn>composition</dfn> combines multiple functions by mapping <a data-lt="parameter">parameters</a> or <a data-lt="output">outputs</a>  
 of <a data-lt="function">constituent functions</a> onto one another, defining a nesting or concatenation of functions.
-  _The ontology term is defined at [fnoc:Composition](#fnoc-Composition). The composition consists of a set of CompositionMappings.
+  _The ontology term is defined at [fnoc:Composition](#fnoc-Composition)._ The composition consists of a set of CompositionMappings.
 - A <dfn>composition mapping</dfn> is a directed connection from either a constant term, a <a data-lt="parameter">parameter</a>, or 
 an <a data-lt="output">output</a> to a <a data-lt="parameter">parameter</a> or an <a data-lt="output">output</a>.  
   
