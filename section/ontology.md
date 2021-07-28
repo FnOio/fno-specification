@@ -578,13 +578,15 @@ Allows for using constants in a <a>composition</a>.
 ### Partial Function Application {#partialFunctionApplication}
 
 In the following example, we define the function `ex:add10` as a partial application of `ex:sumFunction` by providing 
-the constant value `10` for the parameter `ex:intParameterA`. The parameter value is specified using the associated 
-<a href="#fn-predicate">fno:predicate</a> `ex:startValue`. 
+the constant value `10` for the parameter `ex:intParameterA`. 
 
 ```turtle "example": " " 
 ex:add10 a fnoc:PartiallyAppliedFunction;
     fnoc:partiallyApplies :sumFunction ;
-    ex:startValue 10 .  
+    fnoc:parameterBinding [
+      fnoc:boundToTerm 10 ;
+      fnoc:boundParameter ex:inParameterA
+    ] .  
 ```
 
 This is equivalent to the following function/composition:
@@ -642,6 +644,22 @@ Expresses that the <a>function</a> in the subject is a partial application of th
 that the partial application provides a constant value for at least one of the function's parameters. If no parameter 
 values are specified the use of `fnoc:partiallyApplies` is equivalent to <a href="#fnoc-applies">`fnoc:applies`</a>.  
 
+##### `fnoc:ParameterBinding` {#fnoc-ParameterBinding}
+Represents parameter bindings in partial function applications, combining some value (any RDF term), via 
+<a href="#fnoc-boundToTerm">fnoc:boundToTerm</a> and one 
+of the <a>function</a>'s <a>parameter</a>s, via <a href=#fnoc-boundParameter>fnoc:boundParameter</a>.  
 
+##### `fnoc:parameterBinding` {#fnoc-parameterBinding}
+**Domain** <a href="#fnoc-partiallyAppliedFunction">fno:PartiallyAppliedFunction</a>
 
+**Range** <a href="#fnoc-ParameterBinding">fnoc:ParameterBinding</a>   
 
+##### `fnoc:boundToTerm` {#fnoc-boundToTerm}
+
+**Domain** <a href="#fnoc-ParameterBinding">fnoc:ParameterBinding</a>   
+
+##### `fnoc:boundParameter` {#fnoc-boundParameter}
+
+**Domain** <a href="#fnoc-ParameterBinding">fnoc:ParameterBinding</a>   
+
+**Range** <a href="#fn-output">fno:Parameter</a>
