@@ -597,7 +597,7 @@ ex:add10 a fno:Function ;
     fno:name            "add10"^^xsd:string ;
     dcterms:description "This function adds 10 to its integer parameter."^^xsd:string ;
     fno:expects ( ex:intParameterB ) ;
-    fno:returns ( ex:sumOutput ) 
+    fno:returns ( ex:sumOutput ) .
 
 ex:add10Composition a  fnoc:Composition ;
     fnoc:composedOf [
