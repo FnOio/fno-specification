@@ -582,7 +582,7 @@ the constant value `10` for the parameter `ex:intParameterA`.
 
 ```turtle "example": " " 
 ex:add10 a fnoc:PartiallyAppliedFunction;
-    fnoc:partiallyApplies :sumFunction ;
+    fnoc:partiallyApplies ex:sumFunction ;
     fnoc:parameterBinding [
       fnoc:boundToTerm 10 ;
       fnoc:boundParameter ex:inParameterA
