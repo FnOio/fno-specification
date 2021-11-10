@@ -374,7 +374,7 @@ ex:leftPadExecution
     fno:uses ex:leftPadMapping
 ```
 
-### Full example
+#### Full example
 
 ```turtle "example": " "
 ex:leftPad
@@ -413,3 +413,253 @@ ex:leftPadMapping
     fno:returnMapping    [ a                   fnom:DefaultReturnMapping ;
                            fnom:functionOutput ex:outputStringOutput ] .
 ```
+
+### Function Composition {#composition}
+
+> Function Composition is experimental and subject to change.
+
+ 
+As an alternative to providing an <a>implementation</a> of a <a>function</a>, we can also define how it can be realized 
+using other <a>function</a>s, namely by defining a <a>composition</a>. To illustrate this point, we first define a 
+function, `ex:sum3Function`, that computes the sum of three integers. We are using the parameter and output definitions made earlier, 
+so we only have to provide the third parameter, `ex:intParameterC`. For brevity, we omit the corresponding <a>problem</a> and <a>algorithm</a>. 
+
+```turtle "example": " "
+ex:sum3Function
+    a                   fno:Function ;
+    fno:name            "Sum3"^^xsd:string ;
+    dcterms:description "This function calculates the sum of three integers."^^xsd:string ;
+    fno:expects ( ex:intParameterA ex:intParameterB ex:intParameterC ) ;
+    fno:returns ( ex:sumOutput ) 
+
+ex:intParameterC
+    a             fno:Parameter ;
+    fno:predicate ex:sumValue2 ;
+    fno:type      xsd:integer ;
+    fno:required  "true"^^xsd:boolean .
+```
+
+##### `fnoc:Composition` {#fnoc-composition}
+
+We will realize `ex:sum3Function` (defined in the previous paragraph) using `ex:sumFunction` introduced earlier, as illustrated with the following pseudo code: 
+```
+    ex:sum3Function(intParameterA, intParameterB, intParameterC) =  
+        ex:sumFunction(ex:sumFunction(intParameterA, intParameterB), intParameterC) 
+```
+
+In this construct, we use `ex:sumFunction` twice. In order to be able to reference the two distinct calls of the
+function `ex:sumFunction` unambiguously, we first create two distinct *applications* 
+of it using <a href="#fnoc-applies">`fnoc:applies`</a> (This is only required when using the same function more than once in a composition).
+Then, we define the composition using a set of <a>composition mapping</a>s.  
+```turtle "example": " " 
+
+# create distinct instances of the function so we can reference them unambiguously 
+ex:sum3Function_1 fnoc:applies ex:sumFunction .
+ex:sum3Function_2 fnoc:applies ex:sumFunction .
+
+# connect the parameters and outputs of ex:sum3Function, ex:sum3Function_1 and ex:sum3Function_2 
+# to match our desired composition
+ex:sum3Composition 
+    a fnoc:Composition ;   
+    fnoc:composedOf [
+        fnoc:mapFrom [
+            fnoc:constituentFunction ex:sum3Function;
+            fnoc:functionParameter ex:intParameterA 
+        ] ;
+        fnoc:mapTo [
+            fnoc:constituentFunction ex:sum3Function_1;
+            fnoc:functionParameter ex:intParameterA
+        ] 
+    ],
+    [
+        fnoc:mapFrom [
+            fnoc:constituentFunction ex:sum3Function;
+            fnoc:functionParameter ex:intParameterB 
+        ] ;
+        fnoc:mapTo [
+            fnoc:constituentFunction ex:sum3Function_1;
+            fnoc:functionParameter ex:intParameterB
+        ] 
+    ],
+    [
+        fnoc:mapFrom [
+            fnoc:constituentFunction ex:sum3Function_1;
+            fnoc:functionOutput ex:sumOutput 
+        ] ;
+        fnoc:mapTo [
+            fnoc:constituentFunction ex:sum3Function_2;
+            fnoc:functionParameter ex:intParameterA
+        ] 
+    ],
+    [
+        fnoc:mapFrom [
+            fnoc:constituentFunction ex:sum3Function;
+            fnoc:functionParameter ex:intParameterC  
+        ] ;
+        fnoc:mapTo [
+            fnoc:constituentFunction ex:sum3Function_2;
+            fnoc:functionParameter ex:intParameterB
+        ] 
+    ],
+    [
+        fnoc:mapFrom [
+            fnoc:constituentFunction ex:sum3Function_2;
+            fnoc:functionOutput ex:sumOutput  
+        ] ;
+        fnoc:mapTo [
+            fnoc:constituentFunction ex:sum3Function;
+            fnoc:functionOutput ex:sumOutput
+        ] 
+    ] .
+``` 
+
+#### `fnoc:compositionMapping` {#fnoc-compositionMapping}
+
+Connects one <a>function</a>'s <a>parameter</a> or <a>output</a> to another function's parameter or output. The 
+properties used for this are <a href="#fnoc-mapFrom">mapFrom</a> and <a href="#fnoc-mapTo">mapTo</a> . Alternatively, a 
+CompositionMapping can link to a constant term via <a href="#fnoc-mapFromTerm">mapFromTerm</a> instead of 
+<a href="#fnoc-mapFrom">mapFrom</a>.
+
+#### `fnoc:compositionMappingEndpoint` {#fnoc-compositionMappingEndpoint}
+
+The `source` or `target` of a compositionMapping, defining a combination of <a>function</a> and either <a>parameter</a> or <a>output</a> that is mapped to the `target`.
+
+##### `fnoc:composedOf` {#fnoc-composedOf}
+
+**Domain** <a href="#fnoc-composition">fnoc:Composition</a>
+
+**Range** <a href="#fnoc-compositionMapping">fnoc:CompositionMapping</a> 
+
+##### `fnoc:applies` {#fnoc-applies}
+
+**Domain** <a href="#fn-function">fno:Function</a>
+
+**Range** <a href="#fn-function">fno:Function</a> 
+
+##### `fnoc:constituentFunction` {#fnoc-constituentFunction}
+
+**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> or <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
+
+**Range** <a href="#fn-function">fno:Function</a>
+
+##### `fnoc:functionOutput` {#fnoc-functionOutput}
+
+**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> or <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
+
+**Range** <a href="#fn-output">fno:Output</a>
+
+##### `fnoc:functionParameter` {#fnoc-functionParameter}
+
+**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> or <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
+
+**Range** <a href="#fn-output">fno:Parameter</a>
+
+##### `fnoc:mapFrom` {#fnoc-mapFrom}
+
+**Domain** <a href="#fnoc-compositionMapping">fnoc:CompositionMapping</a>
+
+**Range** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> 
+
+##### `fnoc:mapFromTerm` {#fnoc-mapFromTerm}
+
+**Domain** <a href="#fnoc-compositionMapping">fnoc:CompositionMapping</a>
+
+**Range** (any) 
+
+Allows for using constants in a <a>composition</a>.
+
+
+##### `fnoc:mapTo` {#fnoc-mapTo}
+
+**Domain** <a href="#fnoc-compositionMapping">fnoc:CompositionMapping</a>
+
+**Range** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> 
+
+### Partial Function Application {#partialFunctionApplication}
+
+In the following example, we define the function `ex:add10` as a partial application of `ex:sumFunction` by providing 
+the constant value `10` for the parameter `ex:intParameterA`. 
+
+```turtle "example": " " 
+ex:add10 a fnoc:PartiallyAppliedFunction;
+    fnoc:partiallyApplies ex:sumFunction ;
+    fnoc:parameterBinding [
+      fnoc:boundToTerm 10 ;
+      fnoc:boundParameter ex:inParameterA
+    ] .  
+```
+
+This is equivalent to the following function/composition:
+
+
+```turtle "example": " " 
+ex:add10 a fno:Function ;
+    fno:name            "add10"^^xsd:string ;
+    dcterms:description "This function adds 10 to its integer parameter."^^xsd:string ;
+    fno:expects ( ex:intParameterB ) ;
+    fno:returns ( ex:sumOutput ) .
+
+ex:add10Composition a  fnoc:Composition ;
+    fnoc:composedOf [
+        fnoc:mapFromTerm 10 ;
+        fnoc:mapTo [
+            fnoc:constituentFunction ex:sumFunction ;
+            fnoc:functionParameter ex:intParameterA 
+        ] 
+    ],
+    [
+        fnoc:mapFrom [
+            fnoc:constituentFunction ex:add10 ;
+            fnoc:functionParameter ex:intParameterB
+        ] ;
+        fnoc:mapTo [
+            fnoc:constituentFunction ex:sumFunction ;
+            fnoc:functionParameter ex:intParameterB 
+        ]
+    ], 
+    [
+        fnoc:mapFrom [
+            fnoc:constituentFunction ex:sumFunction ;
+            fnoc:functionOutput ex:sumOutput 
+        ];
+        fnoc:mapTo [
+            fnoc:constituentFunction ex:add10 ;
+            fnoc:functionOutput ex:sumOutput
+        ]
+    ] .
+
+```
+
+#### `fnoc:partiallyAppliedFunction` {#fnoc-partiallyAppliedFunction}
+
+A <a>function</a> derived from another function by providing one or more, but not all <a>parameter</a> values.
+
+##### `fnoc:partiallyApplies` {#fnoc-partiallyApplies}
+
+**Domain** <a href="#fnoc-partiallyAppliedFunction">fno:PartiallyAppliedFunction</a>
+
+**Range** <a href="#fn-function">fno:Function</a>   
+
+Expresses that the <a>function</a> in the subject is a partial application of the object <a>function</a>. It is expected 
+that the partial application provides a constant value for at least one of the function's parameters. If no parameter 
+values are specified the use of `fnoc:partiallyApplies` is equivalent to <a href="#fnoc-applies">`fnoc:applies`</a>.  
+
+##### `fnoc:ParameterBinding` {#fnoc-ParameterBinding}
+Represents parameter bindings in partial function applications, combining some value (any RDF term), via 
+<a href="#fnoc-boundToTerm">fnoc:boundToTerm</a> and one 
+of the <a>function</a>'s <a>parameter</a>s, via <a href=#fnoc-boundParameter>fnoc:boundParameter</a>.  
+
+##### `fnoc:parameterBinding` {#fnoc-parameterBinding}
+**Domain** <a href="#fnoc-partiallyAppliedFunction">fno:PartiallyAppliedFunction</a>
+
+**Range** <a href="#fnoc-ParameterBinding">fnoc:ParameterBinding</a>   
+
+##### `fnoc:boundToTerm` {#fnoc-boundToTerm}
+
+**Domain** <a href="#fnoc-ParameterBinding">fnoc:ParameterBinding</a>   
+
+##### `fnoc:boundParameter` {#fnoc-boundParameter}
+
+**Domain** <a href="#fnoc-ParameterBinding">fnoc:ParameterBinding</a>   
+
+**Range** <a href="#fn-output">fno:Parameter</a>
