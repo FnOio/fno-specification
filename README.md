@@ -1,6 +1,7 @@
 # The Function Ontology Specification
 
-Repository for https://w3id.org/function/spec
+Repository for <https://w3id.org/function/spec>, which specifies the Function Ontology.
+The Function Ontology itself is maintained at <https://github.com/IDLabResearch/function-ontology>.
 
 ## Quickstart
 
