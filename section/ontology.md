@@ -104,8 +104,7 @@ ex:intParameterA
     a             fno:Parameter ;
     fno:predicate ex:startValue ;
     fno:type      xsd:integer ;
-    fno:required  "true"^^xsd:
-        boolean .
+    fno:required  "true"^^xsd:boolean .
 
 ex:intParameterB
     a             fno:Parameter ;
@@ -136,22 +135,21 @@ is not important.
 
 **Domain** <a href="#fn-function">fno:Function</a>
 
-**Range** <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#List">rdf:List</a> of
-<a href="#fn-parameter">fno:Parameter</a>
+**Range** <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#List">rdf:List</a> of <a href="#fn-parameter">fno:Parameter</a>
 
 ##### `fno:predicate` {#fn-predicate}
 
-**Domain** <a href="#fn-function">fno:Function</a>
+**Domain** <a href="#fn-parameter">fno:Parameter</a> | <a href="#fn-output">fno:Output</a>
 
 **Range** <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property">rdf:Property</a>
 
 ##### `fno:type` {#fn-type}
 
-**Domain** <a href="#fn-parameter">fno:Parameter</a>
+**Domain** <a href="#fn-parameter">fno:Parameter</a> | <a href="#fn-output">fno:Output</a>
 
 ##### `fno:required` {#fn-required}
 
-**Domain** <a href="#fn-parameter">fno:Parameter</a>
+**Domain** <a href="#fn-parameter">fno:Parameter</a> | <a href="#fn-output">fno:Output</a>
 
 **Range** <a href="http://www.w3.org/2001/XMLSchema#boolean">xsd:boolean</a>
 
@@ -206,9 +204,9 @@ Similarly as with the parameter descriptions, the output descriptions can be reu
 
 ##### `fno:returns` {#fn-returns}
 
-**Domain** <a href="#fn-execution">fno:Execution</a>
+**Domain** <a href="#fn-function">fno:Function</a>
 
-**Range** <a href="#fn-output">fno:Output</a>
+**Range** <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#List">rdf:List</a> of <a href="#fn-output">fno:Output</a>
 
 #### Complete example
 
@@ -222,7 +220,7 @@ ex:sumFunction
     fno:solves          ex:sumProblem ;
     fno:implements      ex:sumAlgorithm ;
     fno:expects         ( ex: intParameterA ex:intParameterB ) ;
-        fno:returns ( ex:sumOutput ) .
+    fno:returns         ( ex:sumOutput ) .
 
 ex:intParameterA
     a             fno:Parameter ;
@@ -292,7 +290,7 @@ can thus be seen as a specific `fno:Implementation`.
 
 #### `fno:Mapping` {#fno-Mapping}
 
-A `fno:Mapping` maps a `fno:Function` to a (part) of an `fno:Implementation`. For example: a left-pad function is mapped
+A `fno:Mapping` <a data-lt="mapping">maps</a> a `fno:Function` to a (part) of an `fno:Implementation`. For example: a left-pad function is mapped
 to a specific method in an NPM package. This requires the combination of 3 types of mappings:
 
 - the mapping of the method name
@@ -301,7 +299,7 @@ to a specific method in an NPM package. This requires the combination of 3 types
   (so that, e.g., the argument with predicate
   `ex:inputString` of the function is mapped to the second parameter of the `doLeftPadding()` method), and
 - the mapping of the outputs
-  (so that, e.g., both the return value and the thrown exception of the method are mapping to the outputs of the
+  (so that, e.g., both the return value and the thrown exception of the method are mapped to the outputs of the
   function).
 
 To link to the function and implementation, predicates `fno:function` and `fno:implementation` are used, respectively.
@@ -513,14 +511,14 @@ ex:sum3Composition
     ] .
 ``` 
 
-#### `fnoc:compositionMapping` {#fnoc-compositionMapping}
+#### `fnoc:CompositionMapping` {#fnoc-compositionMapping}
 
 Connects one <a>function</a>'s <a>parameter</a> or <a>output</a> to another function's parameter or output. The 
 properties used for this are <a href="#fnoc-mapFrom">mapFrom</a> and <a href="#fnoc-mapTo">mapTo</a> . Alternatively, a 
 CompositionMapping can link to a constant term via <a href="#fnoc-mapFromTerm">mapFromTerm</a> instead of 
 <a href="#fnoc-mapFrom">mapFrom</a>.
 
-#### `fnoc:compositionMappingEndpoint` {#fnoc-compositionMappingEndpoint}
+#### `fnoc:CompositionMappingEndpoint` {#fnoc-compositionMappingEndpoint}
 
 The `source` or `target` of a compositionMapping, defining a combination of <a>function</a> and either <a>parameter</a> or <a>output</a> that is mapped to the `target`.
 
@@ -538,19 +536,19 @@ The `source` or `target` of a compositionMapping, defining a combination of <a>f
 
 ##### `fnoc:constituentFunction` {#fnoc-constituentFunction}
 
-**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> or <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
+**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
 
 **Range** <a href="#fn-function">fno:Function</a>
 
 ##### `fnoc:functionOutput` {#fnoc-functionOutput}
 
-**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> or <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
+**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
 
 **Range** <a href="#fn-output">fno:Output</a>
 
 ##### `fnoc:functionParameter` {#fnoc-functionParameter}
 
-**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a> or <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
+**Domain** <a href="#fnoc-compositionMappingEndpoint">fnoc:CompositionMappingEndpoint</a>
 
 **Range** <a href="#fn-output">fno:Parameter</a>
 
@@ -630,7 +628,7 @@ ex:add10Composition a  fnoc:Composition ;
 
 ```
 
-#### `fnoc:partiallyAppliedFunction` {#fnoc-partiallyAppliedFunction}
+#### `fnoc:PartiallyAppliedFunction` {#fnoc-partiallyAppliedFunction}
 
 A <a>function</a> derived from another function by providing one or more, but not all <a>parameter</a> values.
 

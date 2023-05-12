@@ -15,7 +15,7 @@ Furthermore, we define following concepts:
 
 - A <dfn>function</dfn> is a process that performs a specific task. 
   In essence, its identification is a <a>function declaration</a>.
-  A function can associate one or more
+  A function can associate zero or more
   <a data-lt="parameter">parameters</a> to an <a>output</a>.
   A function can have input parameters, output, solve certain
   <a data-lt="problem">problems</a>,
